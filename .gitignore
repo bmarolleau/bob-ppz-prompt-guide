@@ -2,3 +2,4 @@ site/
 __pycache__/
 .build-tmp.md
 .DS_Store
+.venv
