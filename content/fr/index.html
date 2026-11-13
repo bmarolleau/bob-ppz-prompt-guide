@@ -180,6 +180,8 @@ Commandes slash</a></li>
 <li><a href="#24-skills" id="toc-24-skills">2.4 Skills</a></li>
 <li><a href="#25-groupes-doutils" id="toc-25-groupes-doutils">2.5
 Groupes d'outils</a></li>
+<li><a href="#26-rules-bob-et-agentsmd"
+id="toc-26-rules-bob-et-agentsmd">2.6 Rules Bob et AGENTS.md</a></li>
 </ul></li>
 <li><a href="#3-dernières-fonctionnalités-4-dernières-semaines"
 id="toc-3-dernières-fonctionnalités-4-dernières-semaines">3. Dernières
@@ -257,6 +259,12 @@ COBOL/PL/I vers Java</td>
 <td>Gouvernance</td>
 <td>Skills de standards de codage, ZCodeScan, analyse d'impact,
 dictionnaire de données</td>
+</tr>
+<tr>
+<td>Personnalisation</td>
+<td>Rules Bob (<code>.bob/rules/</code>, <code>AGENTS.md</code>) pour
+imposer des conventions de nommage, d'organisation et de documentation ;
+modes et skills personnalisés</td>
 </tr>
 <tr>
 <td>Options de déploiement</td>
@@ -534,6 +542,105 @@ des skills</a></p>
 <p>Référence : <a
 href="https://bob.ibm.com/docs/ide/premium-packages/bob-for-z/Using_tools">Utilisation
 des outils et groupes d'outils</a></p>
+<h3 id="26-rules-bob-et-agentsmd">2.6 Rules Bob et AGENTS.md</h3>
+<p>Les rules sont des instructions permanentes que Bob applique à chaque
+tâche, sans qu'il soit nécessaire de les répéter dans chaque prompt.
+Elles étendent le comportement par défaut de Bob avec des préférences,
+des contraintes et des consignes : style de code, formats de
+documentation, exigences de test, processus de projet et conventions
+d'équipe.</p>
+<p><strong>Où se trouvent les rules</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Emplacement</th>
+<th>Portée</th>
+<th>S'applique à</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>~/.bob/rules/</code></td>
+<td>Globale : tous vos projets</td>
+<td>Tous les modes</td>
+</tr>
+<tr>
+<td><code>.bob/rules/</code></td>
+<td>Espace de travail : projet courant uniquement</td>
+<td>Tous les modes</td>
+</tr>
+<tr>
+<td><code>.bob/rules-{mode-slug}/</code></td>
+<td>Espace de travail : projet courant uniquement</td>
+<td>Un seul mode (utilisez le slug du mode, par exemple
+<code>rules-plan/</code> pour le mode Plan)</td>
+</tr>
+<tr>
+<td><code>AGENTS.md</code> (racine du projet)</td>
+<td>Espace de travail : projet courant uniquement</td>
+<td>Tous les modes ; chargé automatiquement et versionné avec le
+projet</td>
+</tr>
+</tbody>
+</table></div>
+<pre class="text"><code>.bob/
+├── rules/
+│   └── 01-naming-and-organization.md     # règles générales, tous les modes
+└── rules-{mode-slug}/
+    ├── 01-style-guide.md                 # règles pour un seul mode
+    └── 02-formatting.txt</code></pre>
+<p><strong>Comment les rules sont combinées</strong></p>
+<ul>
+<li>Les rules globales (<code>~/.bob/rules/</code>) sont chargées en
+premier, puis les rules de l'espace de travail
+(<code>.bob/rules/</code>). Les rules de l'espace de travail peuvent
+surcharger les rules globales.</li>
+<li>À chaque niveau, les rules propres à un mode sont chargées avant les
+rules générales.</li>
+<li>Les fichiers d'un répertoire de rules sont chargés par ordre
+alphabétique ; les préfixes numériques (<code>01-</code>,
+<code>02-</code>) permettent de contrôler l'ordre.</li>
+<li><code>/init</code> analyse la base de code et génère
+<code>AGENTS.md</code>, qui donne à Bob le contexte du projet dès la
+première tâche.</li>
+</ul>
+<p><strong>Bien écrire ses rules</strong></p>
+<ul>
+<li>Organisez par thème, avec une courte puce par règle et un exemple
+concret du résultat attendu.</li>
+<li>Gardez les rules et <code>AGENTS.md</code> courts. Ils font partie
+du contexte permanent et consomment des tokens avant même que vous ne
+saisissiez quoi que ce soit : n'y mettez que les conventions et les
+commandes de configuration, de test et de style.</li>
+<li>Utilisez des rules globales pour les standards personnels ou
+d'organisation, et des rules d'espace de travail pour les exigences du
+projet.</li>
+</ul>
+<p><strong>Les rules dans les labs</strong></p>
+<p>L'<a
+href="https://github.com/ovallod/Bob4z-a-thon/blob/main/FR/1-LabDiscoverCBSA.md">exercice
+0 du Lab 1</a> crée les premières rules du projet CBSA, avant toute
+analyse. Un seul prompt (abrégé ci-dessous) définit où Bob range ce
+qu'il génère et comment il le nomme :</p>
+<pre class="text"><code>Create the following Bob rules (file in .bob/rules):
+- Documents must be stored in the docs/ directory. Documents specific to a program go in a
+  sub-directory named after the program (for example docs/BNKMENU/).
+- Tools must be stored in the tools/ directory.
+- Schemas, drawings and graphs must be stored in graph/ directory.
+- File names follow [PREFIX]-[TYPE]-[description].md, where PREFIX is the program name,
+  CBSA (application) or GLOBAL (cross-cutting), and TYPE is analysis, archi, docu, inv, plan or spec.</code></pre>
+<p>Bob écrit les rules dans <code>.bob/rules/</code> ou dans une section
+dédiée d'<code>AGENTS.md</code> ; les deux sont appliqués de la même
+façon. Les exercices suivants génèrent ensuite les documents aux
+emplacements et avec les noms définis par ces rules (par exemple
+<code>GLOBAL-docu-...</code> pour les documents transverses).</p>
+<p>Références : <a
+href="https://bob.ibm.com/docs/ide/configuration/rules">Custom rules</a>
+· <a
+href="https://bob.ibm.com/docs/ide/tutorials/standardize-bobs-behavior">Standardize
+Bob's behavior</a> · <a
+href="https://bob.ibm.com/docs/shell/configuration/bobshell-custom-rules">Custom
+rules dans Bob Shell</a></p>
 <hr />
 <h2 id="3-dernières-fonctionnalités-4-dernières-semaines">3. Dernières
 fonctionnalités (4 dernières semaines)</h2>
@@ -676,13 +783,14 @@ EN</a>.</p>
 <tr>
 <td><strong>1. Discover CBSA</strong> (<a
 href="https://github.com/ovallod/Bob4z-a-thon/blob/main/FR/1-LabDiscoverCBSA.md">source</a>)</td>
-<td>Modes : Z Code, Z Architect, Agent. <code>/init</code> avec
-<code>scan_program</code> ; workflow Generate data dictionary ;
+<td>Modes : Z Code, Z Architect, Agent. Rules Bob
+(<code>.bob/rules</code>, <code>AGENTS.md</code>) ; <code>/init</code>
+avec <code>scan_program</code> ; workflow Generate data dictionary ;
 <code>execute_sql_query</code> ;
 <code>/z-coding-standards-skill-builder</code> ; <code>/explain</code> ;
 workflow de génération de documentation (règles métier) ; diagrammes
 draw.io ; analyse d'impact et planification d'implémentation</td>
-<td>Définir les règles de nommage et d'organisation ; initialiser
+<td>Définir les rules Bob de nommage et d'organisation ; initialiser
 l'espace de travail ; construire un dictionnaire de données, un
 inventaire applicatif et des standards de codage ; produire des
 diagrammes d'architecture ; documenter les programmes et les règles
@@ -740,6 +848,13 @@ outils et capacités par lab</h3>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>Rules Bob (<code>.bob/rules</code>)</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
 <tr>
 <td><code>/init</code> et <code>AGENTS.md</code></td>
 <td style="text-align: center;">✓</td>

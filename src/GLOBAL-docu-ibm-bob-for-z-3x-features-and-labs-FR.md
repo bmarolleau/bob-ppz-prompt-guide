@@ -19,6 +19,7 @@ IBM Bob Premium Package for Z (PPZ) est une extension pilotée par l'IA pour IBM
 | Documentation intégrée | Documentation de programmes et d'applications, extraction des règles métier et explications multi-perspectives |
 | Transformation | Planification d'implémentation, extraction de services (refactoring), planification et validation de la transformation COBOL/PL/I vers Java |
 | Gouvernance | Skills de standards de codage, ZCodeScan, analyse d'impact, dictionnaire de données |
+| Personnalisation | Rules Bob (`.bob/rules/`, `AGENTS.md`) pour imposer des conventions de nommage, d'organisation et de documentation ; modes et skills personnalisés |
 | Options de déploiement | SaaS ; sur site sur Red Hat OpenShift (y compris en environnement isolé) ; Z Understand et Refactor autonomes sur OpenShift ; zCX ; Bob Shell sur Z |
 | Accès distant | Espaces de travail virtuels z/OS via Zowe Explorer |
 | Connaissance spécifique à Z | Outil Z Context (recherche dans la documentation IBM Z) |
@@ -102,6 +103,59 @@ Référence : [Utilisation des skills](https://bob.ibm.com/docs/ide/premium-pack
 
 Référence : [Utilisation des outils et groupes d'outils](https://bob.ibm.com/docs/ide/premium-packages/bob-for-z/Using_tools)
 
+### 2.6 Rules Bob et AGENTS.md
+
+Les rules sont des instructions permanentes que Bob applique à chaque tâche, sans qu'il soit nécessaire de les répéter dans chaque prompt. Elles étendent le comportement par défaut de Bob avec des préférences, des contraintes et des consignes : style de code, formats de documentation, exigences de test, processus de projet et conventions d'équipe.
+
+**Où se trouvent les rules**
+
+| Emplacement | Portée | S'applique à |
+|---|---|---|
+| `~/.bob/rules/` | Globale : tous vos projets | Tous les modes |
+| `.bob/rules/` | Espace de travail : projet courant uniquement | Tous les modes |
+| `.bob/rules-{mode-slug}/` | Espace de travail : projet courant uniquement | Un seul mode (utilisez le slug du mode, par exemple `rules-plan/` pour le mode Plan) |
+| `AGENTS.md` (racine du projet) | Espace de travail : projet courant uniquement | Tous les modes ; chargé automatiquement et versionné avec le projet |
+
+```text
+.bob/
+├── rules/
+│   └── 01-naming-and-organization.md     # règles générales, tous les modes
+└── rules-{mode-slug}/
+    ├── 01-style-guide.md                 # règles pour un seul mode
+    └── 02-formatting.txt
+```
+
+**Comment les rules sont combinées**
+
+- Les rules globales (`~/.bob/rules/`) sont chargées en premier, puis les rules de l'espace de travail (`.bob/rules/`). Les rules de l'espace de travail peuvent surcharger les rules globales.
+- À chaque niveau, les rules propres à un mode sont chargées avant les rules générales.
+- Les fichiers d'un répertoire de rules sont chargés par ordre alphabétique ; les préfixes numériques (`01-`, `02-`) permettent de contrôler l'ordre.
+- `/init` analyse la base de code et génère `AGENTS.md`, qui donne à Bob le contexte du projet dès la première tâche.
+
+**Bien écrire ses rules**
+
+- Organisez par thème, avec une courte puce par règle et un exemple concret du résultat attendu.
+- Gardez les rules et `AGENTS.md` courts. Ils font partie du contexte permanent et consomment des tokens avant même que vous ne saisissiez quoi que ce soit : n'y mettez que les conventions et les commandes de configuration, de test et de style.
+- Utilisez des rules globales pour les standards personnels ou d'organisation, et des rules d'espace de travail pour les exigences du projet.
+
+**Les rules dans les labs**
+
+L'[exercice 0 du Lab 1](https://github.com/ovallod/Bob4z-a-thon/blob/main/FR/1-LabDiscoverCBSA.md) crée les premières rules du projet CBSA, avant toute analyse. Un seul prompt (abrégé ci-dessous) définit où Bob range ce qu'il génère et comment il le nomme :
+
+```text
+Create the following Bob rules (file in .bob/rules):
+- Documents must be stored in the docs/ directory. Documents specific to a program go in a
+  sub-directory named after the program (for example docs/BNKMENU/).
+- Tools must be stored in the tools/ directory.
+- Schemas, drawings and graphs must be stored in graph/ directory.
+- File names follow [PREFIX]-[TYPE]-[description].md, where PREFIX is the program name,
+  CBSA (application) or GLOBAL (cross-cutting), and TYPE is analysis, archi, docu, inv, plan or spec.
+```
+
+Bob écrit les rules dans `.bob/rules/` ou dans une section dédiée d'`AGENTS.md` ; les deux sont appliqués de la même façon. Les exercices suivants génèrent ensuite les documents aux emplacements et avec les noms définis par ces rules (par exemple `GLOBAL-docu-...` pour les documents transverses).
+
+Références : [Custom rules](https://bob.ibm.com/docs/ide/configuration/rules) · [Standardize Bob's behavior](https://bob.ibm.com/docs/ide/tutorials/standardize-bobs-behavior) · [Custom rules dans Bob Shell](https://bob.ibm.com/docs/shell/configuration/bobshell-custom-rules)
+
 ---
 
 ## 3. Dernières fonctionnalités (4 dernières semaines)
@@ -149,7 +203,7 @@ Les labs utilisent la CICS Banking Sample Application (CBSA) et sont publiés en
 
 | Lab | Outils, skills et workflows utilisés | Objectifs d'apprentissage |
 |---|---|---|
-| **1. Discover CBSA** ([source](https://github.com/ovallod/Bob4z-a-thon/blob/main/FR/1-LabDiscoverCBSA.md)) | Modes : Z Code, Z Architect, Agent. `/init` avec `scan_program` ; workflow Generate data dictionary ; `execute_sql_query` ; `/z-coding-standards-skill-builder` ; `/explain` ; workflow de génération de documentation (règles métier) ; diagrammes draw.io ; analyse d'impact et planification d'implémentation | Définir les règles de nommage et d'organisation ; initialiser l'espace de travail ; construire un dictionnaire de données, un inventaire applicatif et des standards de codage ; produire des diagrammes d'architecture ; documenter les programmes et les règles métier ; réaliser une analyse d'impact (SORTCODE fixe vers variable) ; documenter le parcours utilisateur ; planifier et implémenter une nouvelle fonctionnalité (recherche par e-mail) |
+| **1. Discover CBSA** ([source](https://github.com/ovallod/Bob4z-a-thon/blob/main/FR/1-LabDiscoverCBSA.md)) | Modes : Z Code, Z Architect, Agent. Rules Bob (`.bob/rules`, `AGENTS.md`) ; `/init` avec `scan_program` ; workflow Generate data dictionary ; `execute_sql_query` ; `/z-coding-standards-skill-builder` ; `/explain` ; workflow de génération de documentation (règles métier) ; diagrammes draw.io ; analyse d'impact et planification d'implémentation | Définir les rules Bob de nommage et d'organisation ; initialiser l'espace de travail ; construire un dictionnaire de données, un inventaire applicatif et des standards de codage ; produire des diagrammes d'architecture ; documenter les programmes et les règles métier ; réaliser une analyse d'impact (SORTCODE fixe vers variable) ; documenter le parcours utilisateur ; planifier et implémenter une nouvelle fonctionnalité (recherche par e-mail) |
 | **2. Discover CBSA Global** ([source](https://github.com/ovallod/Bob4z-a-thon/blob/main/FR/2-LabDiscoverCBSAGlobal.md)) | Modes : Agent (récupération du front-end), Z Code. `/init` (`AGENTS.md`) ; workflow de dictionnaire de données ; inventaires COBOL et front-end ; diagrammes draw.io | Étendre l'analyse CBSA au front-end (Java, React, API) ; produire les inventaires backend et frontend et les diagrammes d'architecture ; analyser un flux fonctionnel (virement local) ; rédiger un guide utilisateur ; analyser techniquement le scoring de crédit |
 | **3. Skill Builder & Refactor** ([source](https://github.com/ovallod/Bob4z-a-thon/blob/main/FR/3-LabSkillBuilder-Refactor.md)) | Z Code : `/z-coding-standards-skill-builder`. Z Architect : `/refactor` (extraction Z Understand), `extractionGoal.md` | Générer un skill de standards de codage personnalisé et l'utiliser pour produire du code conforme ; refactoriser `INQCUST` de VSAM vers Db2 : analyser, concevoir le modèle Db2, exécuter le refactoring interactif, planifier la migration et les tests |
 | **4. Optimize SQL & Db2 Config** ([source](https://github.com/ovallod/Bob4z-a-thon/blob/main/FR/4-LabOptimizeSQL%26DB2Config.md)) | Modes : Agent, Z Code. Inventaire du SQL embarqué ; analyse des JCL DDL Db2 ; génération d'ERD ; analyse de performance ; génération de JCL ; export draw.io | Inventorier les instructions SQL embarquées ; détecter les anti-patterns (par exemple fetch multi-lignes, contention de verrous) ; rétro-concevoir les DDL en diagramme entité-relation et hiérarchie de stockage ; recommander et implémenter des améliorations (par exemple l'index manquant sur `PROCTRAN`) ; exporter les diagrammes vers draw.io |
@@ -158,6 +212,7 @@ Les labs utilisent la CICS Banking Sample Application (CBSA) et sont publiés en
 
 | Capacité | Lab 1 | Lab 2 | Lab 3 | Lab 4 |
 |---|:---:|:---:|:---:|:---:|
+| Rules Bob (`.bob/rules`) | ✓ | | | |
 | `/init` et `AGENTS.md` | ✓ | ✓ | | |
 | Dictionnaire de données | ✓ | ✓ | | |
 | Inventaire applicatif | ✓ | ✓ | | ✓ |
