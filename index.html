@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IBM Bob Premium Package for Z 3.x: Features, Modes, Workflows,
+Skills and Labs</title>
+<style>
+:root {
+  --ibm-black: #161616;
+  --text: #161616;
+  --muted: #525252;
+  --border: #e0e0e0;
+  --blue: #0f62fe;
+  --red: #ee0000;
+  --layer: #f4f4f4;
+  --callout-bg: #ddeeff;
+  --callout-border: #4589ff;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: "IBM Plex Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text);
+  background: #ffffff;
+}
+[id] { scroll-margin-top: 64px; }
+
+/* Masthead, in the spirit of the Redbooks site */
+.masthead {
+  position: sticky; top: 0; z-index: 10;
+  height: 48px; background: var(--ibm-black); color: #fff;
+  display: flex; align-items: center; padding: 0 1rem;
+  border-bottom: 1px solid #393939;
+}
+.masthead .brand { font-weight: 600; letter-spacing: .02em; margin-right: 2rem; }
+.masthead .brand span { color: var(--red); }
+.masthead .crumb { color: #c6c6c6; font-size: .875rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1 1 auto; min-width: 0; }
+.masthead .lang-switch {
+  flex: 0 0 auto; margin-left: 1rem; padding: .1rem .45rem;
+  color: #a8a8a8; font-size: .75rem; letter-spacing: .08em; text-decoration: none;
+  border: 1px solid #525252; border-radius: 2px;
+}
+.masthead .lang-switch:hover, .masthead .lang-switch:focus { color: #fff; border-color: #a8a8a8; }
+
+.layout { display: flex; align-items: flex-start; }
+
+/* Left navigation tree */
+nav#side {
+  position: sticky; top: 48px;
+  width: 22rem; flex: 0 0 22rem;
+  height: calc(100vh - 48px); overflow-y: auto;
+  border-right: 1px solid var(--border);
+  background: var(--layer);
+  padding: 1rem 0 2rem 0;
+  font-size: .875rem;
+}
+nav#side .nav-title {
+  padding: 0 1rem .5rem 1rem; font-weight: 600; color: var(--muted);
+  text-transform: uppercase; font-size: .75rem; letter-spacing: .08em;
+}
+nav#side ul { list-style: none; margin: 0; padding: 0; }
+nav#side li { margin: 0; }
+nav#side a {
+  display: block; padding: .3rem 1rem .3rem 1rem;
+  color: var(--text); text-decoration: none; border-left: 3px solid transparent;
+}
+nav#side a:hover { background: #e8e8e8; border-left-color: var(--blue); }
+nav#side > ul > li > a { font-weight: 600; padding-top: .5rem; }
+nav#side ul ul a { padding-left: 1.75rem; font-weight: 400; }
+nav#side ul ul ul a { padding-left: 2.75rem; font-size: .8125rem; color: var(--muted); }
+
+main { flex: 1 1 auto; min-width: 0; padding: 0 3rem 4rem 3rem; max-width: 62rem; }
+
+/* Title block */
+.titleblock { padding: 2rem 0 .5rem 0; border-bottom: 1px solid var(--border); margin-bottom: 1rem; }
+.titleblock .kicker { color: var(--muted); font-size: .875rem; text-transform: uppercase; letter-spacing: .08em; }
+.titleblock h1.title { margin: .25rem 0 .5rem 0; font-size: 2.25rem; line-height: 1.2; border: 0; padding: 0; font-weight: 400; }
+.titleblock .subtitle { color: var(--muted); margin: 0 0 1rem 0; }
+
+/* Headings, matching the Redbooks content.css rules */
+h1 { margin: 2rem 0 .75rem 0; padding-bottom: .2em; border-bottom: 2px solid var(--red); font-size: 1.875rem; font-weight: 400; line-height: 1.25; }
+h2 { margin: 1.75rem 0 .6rem 0; padding-bottom: .2em; border-bottom: 1px solid #aaaaaa; font-size: 1.5rem; font-weight: 400; line-height: 1.3; }
+h3 { margin: 1.25rem 0 .5rem 0; font-size: 1.125rem; font-weight: 600; }
+h4 { margin: 1rem 0 .4rem 0; font-size: 1rem; font-weight: 600; }
+
+p { margin: 0 0 1rem 0; max-width: 46rem; }
+ul, ol { padding-left: 1.5rem; margin: 0 0 1rem 0; max-width: 46rem; }
+li { margin: .25rem 0; }
+li > p { margin-bottom: .5rem; }
+li.task, ul.task-list { list-style: none; padding-left: .25rem; }
+a { color: var(--blue); }
+a:hover { color: #0043ce; }
+hr { border: 0; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+/* Inline code and code blocks */
+code, pre { font-family: "IBM Plex Mono", Menlo, Consolas, "Courier New", monospace; }
+code { background: var(--layer); padding: .05em .3em; font-size: .875em; }
+pre {
+  background: var(--layer); border-left: 3px solid #8d8d8d;
+  padding: .85rem 1rem; margin: .5rem 0 1.25rem 0;
+  overflow-x: auto; font-size: .8125rem; line-height: 1.5; max-width: 50rem;
+}
+pre code { background: transparent; padding: 0; font-size: inherit; white-space: pre-wrap; word-break: break-word; }
+
+/* Tables, Carbon style */
+.table-wrap { overflow-x: auto; margin: 1rem 0 1.5rem 0; }
+table { border-collapse: collapse; width: 100%; font-size: .875rem; }
+thead th {
+  background: #e0e0e0; text-align: left; font-weight: 600;
+  padding: .6rem .75rem; border-bottom: 2px solid #8d8d8d; vertical-align: bottom;
+}
+tbody td { padding: .55rem .75rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+tbody tr:nth-child(even) { background: #fafafa; }
+tbody tr:hover { background: #e8e8e8; }
+
+/* Callouts: blockquotes are rendered as informational notes */
+blockquote {
+  position: relative; margin: 1.25rem 0; max-width: 50rem;
+  background: var(--callout-bg); border-left: 4px solid var(--callout-border);
+  padding: 1rem 1rem 1rem 3.25rem;
+}
+blockquote::before {
+  content: "i"; position: absolute; left: .85rem; top: 1rem;
+  width: 1.5rem; height: 1.5rem; border-radius: 50%;
+  background: var(--blue); color: #e8f1ff;
+  font: italic 700 .95rem/1.5rem Georgia, serif; text-align: center;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+footer.page-footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); color: var(--muted); font-size: .8125rem; text-align: center; }
+
+@media (max-width: 960px) {
+  .layout { display: block; }
+  nav#side { position: static; width: auto; height: auto; max-height: 22rem; border-right: 0; border-bottom: 1px solid var(--border); }
+  main { padding: 0 1rem 3rem 1rem; }
+}
+@media print {
+  @page { size: A4; margin: 12mm; }
+  .masthead, nav#side { display: none; }
+  body { font-size: 9.5pt; line-height: 1.35; }
+  main { padding: 0; max-width: none; }
+  h1 { font-size: 17pt; margin: 14pt 0 6pt; }
+  h2 { font-size: 12.5pt; margin: 10pt 0 4pt; }
+  h3 { font-size: 10.5pt; margin: 8pt 0 3pt; }
+  p, li { margin-top: 2pt; margin-bottom: 2pt; }
+  table { font-size: 8.5pt; }
+  th, td { padding: 2pt 5pt; }
+  pre { font-size: 8pt; padding: 4pt 6pt; }
+  pre, tr, blockquote { page-break-inside: avoid; }
+  h1, h2, h3 { page-break-after: avoid; }
+}
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="brand">IBM <span>Bob</span> | Premium Package for Z</div>
+  <div class="crumb">IBM Bob Premium Package for Z 3.x: Features, Modes,
+Workflows, Skills and Labs</div>
+  <a class="lang-switch" href="fr/" hreflang="FR" title="Lire en
+français" aria-label="Lire en français">FR</a>
+</header>
+<div class="layout">
+<nav id="side" aria-label="Table of contents">
+  <div class="nav-title">Contents</div>
+<ul>
+<li><a href="#1-key-features" id="toc-1-key-features">1. Key
+Features</a></li>
+<li><a href="#2-modes-workflows-skills-and-tools"
+id="toc-2-modes-workflows-skills-and-tools">2. Modes, Workflows, Skills
+and Tools</a>
+<ul>
+<li><a href="#21-modes" id="toc-21-modes">2.1 Modes</a></li>
+<li><a href="#22-workflows" id="toc-22-workflows">2.2 Workflows</a></li>
+<li><a href="#23-slash-commands" id="toc-23-slash-commands">2.3 Slash
+Commands</a></li>
+<li><a href="#24-skills" id="toc-24-skills">2.4 Skills</a></li>
+<li><a href="#25-tool-groups" id="toc-25-tool-groups">2.5 Tool
+Groups</a></li>
+</ul></li>
+<li><a href="#3-latest-features-last-4-weeks"
+id="toc-3-latest-features-last-4-weeks">3. Latest Features (Last 4
+Weeks)</a>
+<ul>
+<li><a href="#31-new-in-3110" id="toc-31-new-in-3110">3.1 New in
+3.1.10</a></li>
+<li><a href="#32-improvements-in-3110"
+id="toc-32-improvements-in-3110">3.2 Improvements in 3.1.10</a></li>
+<li><a href="#33-previous-release-milestones"
+id="toc-33-previous-release-milestones">3.3 Previous Release
+Milestones</a></li>
+</ul></li>
+<li><a href="#4-practical-labs--tools-matrix"
+id="toc-4-practical-labs--tools-matrix">4. Practical Labs &amp; Tools
+Matrix</a>
+<ul>
+<li><a href="#tool-and-capability-coverage-by-lab"
+id="toc-tool-and-capability-coverage-by-lab">Tool and Capability
+Coverage by Lab</a></li>
+</ul></li>
+</ul>
+</nav>
+<main>
+<div class="titleblock">
+  <div class="kicker">IBM Bob Premium Package for Z | Practitioner's
+guide</div>
+  <h1 class="title">IBM Bob Premium Package for Z 3.x: Features, Modes,
+Workflows, Skills and Labs</h1>
+  <p class="subtitle">Features, modes, workflows, skills and hands-on
+labs for mainframe developers and architects</p>
+</div>
+<p>IBM Bob Premium Package for Z (PPZ) is an AI-powered extension for
+IBM Bob IDE and Bob Shell. It combines guided workflows, automation and
+AI-driven insights to analyze, document, refactor and modernize
+mainframe applications written in COBOL and PL/I.</p>
+<p><strong>Languages:</strong> COBOL, PL/I, JCL, REXX, HLASM
+<strong>Middleware:</strong> CICS, IMS, MQ, Db2 <strong>Releases
+covered:</strong> 3.0.0 (June 2026) to 3.1.10 (October 2026)</p>
+<hr />
+<h2 id="1-key-features">1. Key Features</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Capability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Guided workflows</td>
+<td>Structured, repeatable workflows for data dictionary, documentation,
+business rules, explanation, optimization, refactoring and Java
+transformation</td>
+</tr>
+<tr>
+<td>Legacy understanding</td>
+<td>Analysis of programs, copybooks, dependencies and control-flow
+paths, stored as a local metadata database</td>
+</tr>
+<tr>
+<td>Integrated documentation</td>
+<td>Program and application documentation, business rules extraction and
+multi-perspective explanations</td>
+</tr>
+<tr>
+<td>Transformation</td>
+<td>Implementation planning, service extraction (refactoring),
+COBOL/PL/I to Java planning and validation</td>
+</tr>
+<tr>
+<td>Governance</td>
+<td>Coding standards skills, ZCodeScan, impact analysis, data
+dictionary</td>
+</tr>
+<tr>
+<td>Deployment options</td>
+<td>SaaS; on-premises on Red Hat OpenShift (including air-gapped); Z
+Understand and Refactor standalone on OpenShift; zCX; Bob Shell on
+Z</td>
+</tr>
+<tr>
+<td>Remote access</td>
+<td>z/OS virtual workspaces through Zowe Explorer</td>
+</tr>
+<tr>
+<td>Z-specific knowledge</td>
+<td>Z Context tool (retrieval over IBM Z documentation)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Documentation: <a
+href="https://bob.ibm.com/docs/ide/premium-packages/bob-for-z/bob-for-z-index">Bob
+for Z overview</a> · <a href="https://www.ibm.com/docs/en/bobz/3.x">IBM
+Docs, Bob for Z 3.x</a></p>
+<hr />
+<h2 id="2-modes-workflows-skills-and-tools">2. Modes, Workflows, Skills
+and Tools</h2>
+<h3 id="21-modes">2.1 Modes</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Purpose</th>
+<th>Typical users</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Z Code</strong></td>
+<td>Day-to-day engineering: code explanation, change planning,
+implementation, documentation</td>
+<td>Developers</td>
+</tr>
+<tr>
+<td><strong>Z Architect</strong></td>
+<td>Architecture and design: impact analysis, implementation planning,
+system analysis, technical documentation</td>
+<td>Architects, technical leads</td>
+</tr>
+</tbody>
+</table></div>
+<p>Bob's standard modes (Agent, Plan, Ask) remain available and are used
+in the labs for file and command operations.</p>
+<p>Reference: <a
+href="https://bob.ibm.com/docs/ide/premium-packages/bob-for-z/modes">Modes</a></p>
+<h3 id="22-workflows">2.2 Workflows</h3>
+<p>Start a workflow with the <strong>Start Workflow</strong> button in
+the Bob chat panel, or with a slash command.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Workflow</th>
+<th>Description</th>
+<th>Mode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Generate data dictionary</td>
+<td>Maps variables to business-friendly descriptions (stored in
+<code>DD.json</code>)</td>
+<td>Z Code</td>
+</tr>
+<tr>
+<td>Generate program documentation</td>
+<td>Structured documentation for COBOL, PL/I, HLASM and JCL
+programs</td>
+<td>Z Code</td>
+</tr>
+<tr>
+<td>Generate application documentation</td>
+<td>Navigable HTML documentation with diagrams and cross-references</td>
+<td>Z Architect</td>
+</tr>
+<tr>
+<td>Explain code</td>
+<td>Explanations from Architect, Business or Developer perspective</td>
+<td>Z Code</td>
+</tr>
+<tr>
+<td>Extract business rules</td>
+<td>Structured business rules from COBOL, PL/I or HLASM</td>
+<td>Z Code</td>
+</tr>
+<tr>
+<td>Optimize COBOL program</td>
+<td>Performance bottlenecks and prioritized recommendations</td>
+<td>Z Code</td>
+</tr>
+<tr>
+<td>Refactor COBOL or PL/I program</td>
+<td>Identifies business logic to extract into service programs</td>
+<td>Z Code</td>
+</tr>
+<tr>
+<td>Generate refactored service program</td>
+<td>Creates the service program from extraction candidates</td>
+<td>Z Code</td>
+</tr>
+<tr>
+<td>Plan transformation to Java</td>
+<td>Requirements, architecture, implementation plan, readiness
+assessment</td>
+<td>Z Code</td>
+</tr>
+<tr>
+<td>Validate transformed code</td>
+<td>Generated test data and JUnit tests to verify functional
+equivalence</td>
+<td>Z Code</td>
+</tr>
+</tbody>
+</table></div>
+<p>Reference: <a
+href="https://bob.ibm.com/docs/ide/premium-packages/bob-for-z/workflows">Workflows</a></p>
+<h3 id="23-slash-commands">2.3 Slash Commands</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/init</code></td>
+<td>Analyzes the codebase and generates <code>AGENTS.md</code></td>
+</tr>
+<tr>
+<td><code>/data-dictionary-management</code></td>
+<td>Generates a data dictionary</td>
+</tr>
+<tr>
+<td><code>/sync-data-dictionary</code></td>
+<td>Synchronizes the local data dictionary with the central copy on the
+Z Understand server</td>
+</tr>
+<tr>
+<td><code>/explain</code></td>
+<td>Multi-perspective explanation of a whole source file</td>
+</tr>
+<tr>
+<td><code>/refactor</code></td>
+<td>Interactive refactoring with Z Understand extraction</td>
+</tr>
+<tr>
+<td><code>/refactor-report-generation</code></td>
+<td>Reports for service refactoring efforts</td>
+</tr>
+<tr>
+<td><code>/impact-analysis</code></td>
+<td>Impact analysis for a proposed change</td>
+</tr>
+<tr>
+<td><code>/implementation-planning</code></td>
+<td>Implementation plan for a business requirement</td>
+</tr>
+<tr>
+<td><code>/z-coding-standards-skill-builder</code></td>
+<td>Builds coding standards from existing code</td>
+</tr>
+<tr>
+<td><code>/sign-in-to-z-understand</code></td>
+<td>Authenticates with the Z Understand server</td>
+</tr>
+</tbody>
+</table></div>
+<p>Reference: <a
+href="https://bob.ibm.com/docs/ide/premium-packages/bob-for-z/Using_commands">Using
+commands</a></p>
+<h3 id="24-skills">2.4 Skills</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Skill</th>
+<th>Purpose</th>
+<th>Mode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>z-coding-standards-skill-builder</code></td>
+<td>Consistent coding standards</td>
+<td>Z Code</td>
+</tr>
+<tr>
+<td><code>implementation-planning</code></td>
+<td>Implementation plans based on Z Understand analysis</td>
+<td>Z Architect</td>
+</tr>
+<tr>
+<td><code>impact-analysis</code></td>
+<td>Impact of changes across COBOL, PL/I, JCL, Assembler, REXX</td>
+<td>Z Architect</td>
+</tr>
+<tr>
+<td><code>data-dictionary-management</code></td>
+<td>Create and maintain COBOL and PL/I data dictionaries</td>
+<td>Z Code, Z Architect</td>
+</tr>
+<tr>
+<td><code>refactor-report-generation</code></td>
+<td>Reports for service refactoring</td>
+<td>Z Code</td>
+</tr>
+<tr>
+<td><code>zdebug-cobol-batch-mode-jcl</code> (3.1.0+)</td>
+<td>Creates and diagnoses batch JCL for debugging COBOL with Z Open
+Debug</td>
+<td>Z Code</td>
+</tr>
+<tr>
+<td><code>explain</code></td>
+<td>Whole-file explanations. Not supported from release 3.0.20; use the
+Explain code workflow</td>
+<td>Z Code, Z Architect</td>
+</tr>
+</tbody>
+</table></div>
+<p>Reference: <a
+href="https://bob.ibm.com/docs/ide/premium-packages/bob-for-z/Using_skills">Using
+skills</a></p>
+<h3 id="25-tool-groups">2.5 Tool Groups</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Main tools</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Scanning and control flow</td>
+<td><code>scan_program</code>, <code>get_control_flow</code>,
+<code>get_paragraphs</code>, <code>execute_sql_query</code></td>
+</tr>
+<tr>
+<td>Data dictionary</td>
+<td><code>get_variables</code>, <code>edit_data_dictionary</code>,
+<code>sync_data_dictionary</code></td>
+</tr>
+<tr>
+<td>Z Open Editor / ZCodeScan</td>
+<td><code>zopeneditor-cobol-get-program-control-flow</code>,
+<code>zopeneditor-cobol-get-data-flow</code>,
+<code>zcodescan-check-current-program</code></td>
+</tr>
+<tr>
+<td>Project-wide discovery (Z Understand)</td>
+<td><code>sign_in_to_z_understand</code>,
+<code>get_project_programs</code>,
+<code>get_project_resource_usage</code>,
+<code>get_project_inventory</code></td>
+</tr>
+<tr>
+<td>Refactoring</td>
+<td><code>refactor</code>, <code>submit_refactor_findings</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>Reference: <a
+href="https://bob.ibm.com/docs/ide/premium-packages/bob-for-z/Using_tools">Using
+tools and tool groups</a></p>
+<hr />
+<h2 id="3-latest-features-last-4-weeks">3. Latest Features (Last 4
+Weeks)</h2>
+<p>The most recent release in the changelog is <strong>3.1.10</strong>,
+published in <strong>October 2026</strong>. The changelog gives the
+month only, not the day. Earlier releases (3.1.0, September 2026) fall
+outside the 4-week window.</p>
+<p>Reference: <a
+href="https://bob.ibm.com/docs/ide/changelog?tab=premium-ibm-z">Changelog,
+IBM Z tab</a></p>
+<h3 id="31-new-in-3110">3.1 New in 3.1.10</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Platform-specific VSIX packages</td>
+<td>Packages for <code>linux-x64</code>, <code>darwin-arm64</code> and
+<code>win32-x64</code>; a universal VSIX remains available</td>
+</tr>
+<tr>
+<td>Analysis scope in <code>zapp.yaml</code></td>
+<td>An <code>analysis</code> profile limits analysis to chosen
+directories and languages (COBOL, PL/I, JCL, HLASM); optional IMS and
+CICS settings</td>
+</tr>
+<tr>
+<td>Analysis metadata management</td>
+<td>Indexed workspace representation with incremental scanning and
+status indicators; can be enabled or disabled in settings</td>
+</tr>
+<tr>
+<td>Plan transformation to Java</td>
+<td>Generates requirements, architecture, implementation plans and
+readiness assessment; supports service decomposition</td>
+</tr>
+<tr>
+<td>Validate transformed code</td>
+<td>Generates test data and JUnit tests, maps source behavior to Java,
+produces validation reports; works without mainframe connectivity</td>
+</tr>
+<tr>
+<td>Quantum Safe Cryptography</td>
+<td>Discovery and assessment of cryptographic assets for
+quantum-readiness planning</td>
+</tr>
+<tr>
+<td>JCL Call Extensibility Examples</td>
+<td>Sample configurations for custom JCL call patterns</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="32-improvements-in-3110">3.2 Improvements in 3.1.10</h3>
+<ul>
+<li>Data dictionary synchronization between local workspace and central
+repository.</li>
+<li>Updated synchronization file format with member-type selection and
+regex filtering for PDS and Endevor sources.</li>
+<li>Custom-built scanner integration with the IBM Application Discovery
+BuildClient CLI supports incremental builds.</li>
+<li>CRYPTO API and BMS map support for COBOL, PL/I and HLASM.</li>
+<li>Program documentation completion summary with direct links to all
+generated <code>.md</code> files.</li>
+<li>zTPF macro descriptions included in Assembler business rules
+extraction; <code>overview.md</code> generated for Assembler.</li>
+<li><strong>Skip Regeneration</strong> option for code explanation in
+the Settings page.</li>
+</ul>
+<h3 id="33-previous-release-milestones">3.3 Previous Release
+Milestones</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Release</th>
+<th>Date</th>
+<th>Highlights</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3.1.0</td>
+<td>September 2026</td>
+<td>On-premises deployment on OpenShift, standalone Z Understand and
+Refactor, Extension Pack, Check Project for JCL and HLASM, Endevor
+support, AI-powered COBOL performance recommendations</td>
+</tr>
+<tr>
+<td>3.0.20</td>
+<td>August 2026</td>
+<td>Decisions feature, Explain code from natural-language prompts, z/OS
+virtual workspaces with Zowe Explorer, JCL documentation, multi-lingual
+documentation</td>
+</tr>
+<tr>
+<td>3.0.10</td>
+<td>August 2026</td>
+<td>Check Project, Bring Your Own Scanner, zCX support, CA7 reports
+offline, program and application documentation workflows, Z Context
+tool</td>
+</tr>
+<tr>
+<td>3.0.0</td>
+<td>June 2026</td>
+<td>Structured workflows, data dictionary with bulk generation and sync,
+program documentation and business rules extraction, Bob Shell in the Z
+Understand Linux container</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="4-practical-labs--tools-matrix">4. Practical Labs &amp; Tools
+Matrix</h2>
+<p>The labs use the CICS Banking Sample Application (CBSA) and are
+published in English in the <a
+href="https://github.com/ovallod/Bob4z-a-thon/tree/main/EN">Bob4z-a-thon
+repository</a>. A French version is available in the <a
+href="https://github.com/ovallod/Bob4z-a-thon/tree/main/FR">FR
+folder</a>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Lab</th>
+<th>Tools, skills and workflows used</th>
+<th>Learning objectives</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. Discover CBSA</strong> (<a
+href="https://github.com/ovallod/Bob4z-a-thon/blob/main/EN/1-LabDiscoverCBSA_EN.md">source</a>)</td>
+<td>Modes: Z Code, Z Architect, Agent. <code>/init</code> with
+<code>scan_program</code>; Generate data dictionary workflow;
+<code>execute_sql_query</code>;
+<code>/z-coding-standards-skill-builder</code>; <code>/explain</code>;
+Generate documentation workflow (business rules); draw.io diagrams;
+impact analysis and implementation planning</td>
+<td>Define naming and organization rules; initialize the workspace;
+build a data dictionary, application inventory and coding standards;
+produce architecture diagrams; document programs and business rules; run
+an impact analysis (fixed to variable SORTCODE); document the user
+journey; plan and implement a new feature (search by email)</td>
+</tr>
+<tr>
+<td><strong>2. Discover CBSA Global</strong> (<a
+href="https://github.com/ovallod/Bob4z-a-thon/blob/main/EN/2-LabDiscoverCBSAGlobal_EN.md">source</a>)</td>
+<td>Modes: Agent (front-end retrieval), Z Code. <code>/init</code>
+(<code>AGENTS.md</code>); data dictionary workflow; COBOL and front-end
+inventories; draw.io diagrams</td>
+<td>Extend the CBSA analysis to the front end (Java, React, APIs);
+produce backend and frontend inventories and architecture diagrams;
+analyze a functional flow (local transfer); write a user guide; analyze
+credit scoring technically</td>
+</tr>
+<tr>
+<td><strong>3. Skill Builder &amp; Refactor</strong> (<a
+href="https://github.com/ovallod/Bob4z-a-thon/blob/main/EN/3-LabSkillBuilder-Refactor_EN.md">source</a>)</td>
+<td>Z Code: <code>/z-coding-standards-skill-builder</code>. Z Architect:
+<code>/refactor</code> (Z Understand extraction),
+<code>extractionGoal.md</code></td>
+<td>Generate a custom coding standards skill and use it to generate
+compliant code; refactor <code>INQCUST</code> from VSAM to Db2: analyze,
+design the Db2 model, run interactive refactoring, plan migration and
+tests</td>
+</tr>
+<tr>
+<td><strong>4. Optimize SQL &amp; Db2 Config</strong> (<a
+href="https://github.com/ovallod/Bob4z-a-thon/blob/main/EN/4-LabOptimiseSQL%26DB2Config_EN.md">source</a>)</td>
+<td>Modes: Agent, Z Code. Embedded SQL inventory; Db2 DDL JCL analysis;
+ERD generation; performance analysis; JCL generation; draw.io
+export</td>
+<td>Inventory embedded SQL statements; detect anti-patterns (for example
+multi-row fetch, lock contention); reverse-engineer DDL to an
+entity-relationship diagram and storage hierarchy; recommend and
+implement improvements (for example the missing <code>PROCTRAN</code>
+index); export diagrams to draw.io</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="tool-and-capability-coverage-by-lab">Tool and Capability
+Coverage by Lab</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Capability</th>
+<th style="text-align: center;">Lab 1</th>
+<th style="text-align: center;">Lab 2</th>
+<th style="text-align: center;">Lab 3</th>
+<th style="text-align: center;">Lab 4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/init</code> and <code>AGENTS.md</code></td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>Data dictionary</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>Application inventory</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✓</td>
+</tr>
+<tr>
+<td>Coding standards skill</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>Code explanation and business rules</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>Impact analysis and planning</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>Refactoring (<code>/refactor</code>)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>Architecture diagrams (draw.io)</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✓</td>
+</tr>
+<tr>
+<td>SQL and Db2 analysis</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+</tr>
+<tr>
+<td>Front-end analysis</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>Code generation</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+</tr>
+</tbody>
+</table></div>
+<footer class="page-footer">Made with IBM Bob</footer>
+</main>
+</div>
+</body>
+</html>
