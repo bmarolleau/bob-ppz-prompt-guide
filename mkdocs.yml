@@ -1,6 +1,6 @@
-site_name: Getting Started with IBM Bob and the Premium Package for i
-site_description: A hands-on guide for IBM i developers, green-screen programmers and administrators.
-repo_url: https://github.com/bmarolleau/bob-ppi-prompt-guide
+site_name: IBM Bob Premium Package for Z 3.x
+site_description: Features, modes, workflows, skills and hands-on labs for IBM Bob Premium Package for Z (COBOL, PL/I, JCL, HLASM).
+repo_url: https://github.com/bmarolleau/bob-ppz-prompt-guide
 docs_dir: content
 site_dir: site
 theme:

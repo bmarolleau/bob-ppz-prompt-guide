@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="$lang$">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,7 +37,13 @@ body {
 }
 .masthead .brand { font-weight: 600; letter-spacing: .02em; margin-right: 2rem; }
 .masthead .brand span { color: var(--red); }
-.masthead .crumb { color: #c6c6c6; font-size: .875rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.masthead .crumb { color: #c6c6c6; font-size: .875rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1 1 auto; min-width: 0; }
+.masthead .lang-switch {
+  flex: 0 0 auto; margin-left: 1rem; padding: .1rem .45rem;
+  color: #a8a8a8; font-size: .75rem; letter-spacing: .08em; text-decoration: none;
+  border: 1px solid #525252; border-radius: 2px;
+}
+.masthead .lang-switch:hover, .masthead .lang-switch:focus { color: #fff; border-color: #a8a8a8; }
 
 .layout { display: flex; align-items: flex-start; }
 
@@ -150,12 +156,13 @@ footer.page-footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid 
 </head>
 <body>
 <header class="masthead">
-  <div class="brand">IBM <span>Bob</span> | Practitioner's Guide</div>
+  <div class="brand">IBM <span>Bob</span> | Premium Package for Z</div>
   <div class="crumb">$pagetitle$</div>
+  <a class="lang-switch" href="$switch_href$" hreflang="$switch_label$" title="$switch_title$" aria-label="$switch_title$">$switch_label$</a>
 </header>
 <div class="layout">
 <nav id="side" aria-label="Table of contents">
-  <div class="nav-title">Contents</div>
+  <div class="nav-title">$nav_title$</div>
 $table-of-contents$
 </nav>
 <main>
@@ -165,7 +172,7 @@ $table-of-contents$
   <p class="subtitle">$subtitle$</p>
 </div>
 $body$
-<footer class="page-footer">Made with IBM Bob</footer>
+<footer class="page-footer">$footer$</footer>
 </main>
 </div>
 </body>

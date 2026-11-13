@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Getting Started with IBM Bob and the Premium Package for
-i</title>
+<title>IBM Bob Premium Package for Z 3.x: Features, Modes, Workflows,
+Skills and Labs</title>
 <style>
 :root {
   --ibm-black: #161616;
@@ -38,7 +38,13 @@ body {
 }
 .masthead .brand { font-weight: 600; letter-spacing: .02em; margin-right: 2rem; }
 .masthead .brand span { color: var(--red); }
-.masthead .crumb { color: #c6c6c6; font-size: .875rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.masthead .crumb { color: #c6c6c6; font-size: .875rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1 1 auto; min-width: 0; }
+.masthead .lang-switch {
+  flex: 0 0 auto; margin-left: 1rem; padding: .1rem .45rem;
+  color: #a8a8a8; font-size: .75rem; letter-spacing: .08em; text-decoration: none;
+  border: 1px solid #525252; border-radius: 2px;
+}
+.masthead .lang-switch:hover, .masthead .lang-switch:focus { color: #fff; border-color: #a8a8a8; }
 
 .layout { display: flex; align-items: flex-start; }
 
@@ -151,1070 +157,647 @@ footer.page-footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid 
 </head>
 <body>
 <header class="masthead">
-  <div class="brand">IBM <span>Bob</span> | Practitioner's Guide</div>
-  <div class="crumb">Getting Started with IBM Bob and the Premium
-Package for i</div>
+  <div class="brand">IBM <span>Bob</span> | Premium Package for Z</div>
+  <div class="crumb">IBM Bob Premium Package for Z 3.x: Features, Modes,
+Workflows, Skills and Labs</div>
+  <a class="lang-switch" href="fr/" hreflang="FR" title="Lire en
+français" aria-label="Lire en français">FR</a>
 </header>
 <div class="layout">
 <nav id="side" aria-label="Table of contents">
   <div class="nav-title">Contents</div>
 <ul>
-<li><a href="#chapter-1-introduction"
-id="toc-chapter-1-introduction">Chapter 1. Introduction</a>
+<li><a href="#1-key-features" id="toc-1-key-features">1. Key
+Features</a></li>
+<li><a href="#2-modes-workflows-skills-and-tools"
+id="toc-2-modes-workflows-skills-and-tools">2. Modes, Workflows, Skills
+and Tools</a>
 <ul>
-<li><a href="#11-what-bob-and-the-premium-package-for-i-bring"
-id="toc-11-what-bob-and-the-premium-package-for-i-bring">1.1 What Bob
-and the Premium Package for i bring</a></li>
-<li><a href="#12-use-cases-at-a-glance"
-id="toc-12-use-cases-at-a-glance">1.2 Use cases at a glance</a></li>
-<li><a href="#13-how-to-use-this-guide"
-id="toc-13-how-to-use-this-guide">1.3 How to use this guide</a></li>
+<li><a href="#21-modes" id="toc-21-modes">2.1 Modes</a></li>
+<li><a href="#22-workflows" id="toc-22-workflows">2.2 Workflows</a></li>
+<li><a href="#23-slash-commands" id="toc-23-slash-commands">2.3 Slash
+Commands</a></li>
+<li><a href="#24-skills" id="toc-24-skills">2.4 Skills</a></li>
+<li><a href="#25-tool-groups" id="toc-25-tool-groups">2.5 Tool
+Groups</a></li>
 </ul></li>
-<li><a href="#chapter-2-getting-started"
-id="toc-chapter-2-getting-started">Chapter 2. Getting started</a>
+<li><a href="#3-latest-features-last-4-weeks"
+id="toc-3-latest-features-last-4-weeks">3. Latest Features (Last 4
+Weeks)</a>
 <ul>
-<li><a href="#21-set-up-in-six-steps"
-id="toc-21-set-up-in-six-steps">2.1 Set up in six steps</a></li>
-<li><a href="#22-switching-the-mode" id="toc-22-switching-the-mode">2.2
-Switching the mode</a></li>
-<li><a href="#23-switching-the-scope-with-the--button"
-id="toc-23-switching-the-scope-with-the--button">2.3 Switching the scope
-with the + button</a></li>
-<li><a href="#24-know-the-chat-panel"
-id="toc-24-know-the-chat-panel">2.4 Know the chat panel</a></li>
-<li><a href="#25-your-first-10-minutes"
-id="toc-25-your-first-10-minutes">2.5 Your first 10 minutes</a></li>
+<li><a href="#31-new-in-3110" id="toc-31-new-in-3110">3.1 New in
+3.1.10</a></li>
+<li><a href="#32-improvements-in-3110"
+id="toc-32-improvements-in-3110">3.2 Improvements in 3.1.10</a></li>
+<li><a href="#33-previous-release-milestones"
+id="toc-33-previous-release-milestones">3.3 Previous Release
+Milestones</a></li>
 </ul></li>
-<li><a href="#chapter-3-coming-from-the-green-screen"
-id="toc-chapter-3-coming-from-the-green-screen">Chapter 3. Coming from
-the green screen</a>
+<li><a href="#4-practical-labs--tools-matrix"
+id="toc-4-practical-labs--tools-matrix">4. Practical Labs &amp; Tools
+Matrix</a>
 <ul>
-<li><a href="#31-from-seu-and-pdm-to-code-for-ibm-i"
-id="toc-31-from-seu-and-pdm-to-code-for-ibm-i">3.1 From SEU and PDM to
-Code for IBM i</a></li>
-<li><a href="#32-code-for-ibm-i-in-five-minutes"
-id="toc-32-code-for-ibm-i-in-five-minutes">3.2 Code for IBM i in five
-minutes</a></li>
-<li><a href="#33-where-bob-helps-a-green-screen-developer"
-id="toc-33-where-bob-helps-a-green-screen-developer">3.3 Where Bob helps
-a green-screen developer</a></li>
+<li><a href="#tool-and-capability-coverage-by-lab"
+id="toc-tool-and-capability-coverage-by-lab">Tool and Capability
+Coverage by Lab</a></li>
 </ul></li>
-<li><a href="#chapter-4-best-practices"
-id="toc-chapter-4-best-practices">Chapter 4. Best practices</a>
-<ul>
-<li><a href="#41-write-good-prompts" id="toc-41-write-good-prompts">4.1
-Write good prompts</a></li>
-<li><a href="#42-spend-tokens-wisely"
-id="toc-42-spend-tokens-wisely">4.2 Spend tokens wisely</a></li>
-<li><a href="#43-working-patterns" id="toc-43-working-patterns">4.3
-Working patterns</a></li>
-<li><a href="#44-guardrails" id="toc-44-guardrails">4.4
-Guardrails</a></li>
-</ul></li>
-<li><a href="#chapter-5-use-cases-and-mini-tutorials"
-id="toc-chapter-5-use-cases-and-mini-tutorials">Chapter 5. Use cases and
-mini-tutorials</a>
-<ul>
-<li><a href="#51-understand-an-unknown-application"
-id="toc-51-understand-an-unknown-application">5.1 Understand an unknown
-application</a></li>
-<li><a href="#52-explain-and-modernize-a-program"
-id="toc-52-explain-and-modernize-a-program">5.2 Explain and modernize a
-program</a></li>
-<li><a href="#53-change-a-field-end-to-end"
-id="toc-53-change-a-field-end-to-end">5.3 Change a field end to
-end</a></li>
-<li><a href="#54-analyze-the-impact-of-a-change"
-id="toc-54-analyze-the-impact-of-a-change">5.4 Analyze the impact of a
-change</a></li>
-<li><a href="#55-move-from-dds-and-record-level-access-to-sql"
-id="toc-55-move-from-dds-and-record-level-access-to-sql">5.5 Move from
-DDS and record-level access to SQL</a></li>
-<li><a href="#56-review-and-tune-sql"
-id="toc-56-review-and-tune-sql">5.6 Review and tune SQL</a></li>
-<li><a href="#57-test-with-rpgunit" id="toc-57-test-with-rpgunit">5.7
-Test with RPGUnit</a></li>
-<li><a href="#58-generate-a-modern-ui-from-a-green-screen"
-id="toc-58-generate-a-modern-ui-from-a-green-screen">5.8 Generate a
-modern UI from a green screen</a></li>
-<li><a href="#59-operate-and-administer-your-system"
-id="toc-59-operate-and-administer-your-system">5.9 Operate and
-administer your system</a>
-<ul>
-<li><a href="#591-ptf-and-security-reports"
-id="toc-591-ptf-and-security-reports">5.9.1 PTF and security
-reports</a></li>
-<li><a href="#592-troubleshoot-a-hot-job"
-id="toc-592-troubleshoot-a-hot-job">5.9.2 Troubleshoot a hot
-job</a></li>
-<li><a href="#593-database-troubleshooting"
-id="toc-593-database-troubleshooting">5.9.3 Database
-troubleshooting</a></li>
-<li><a href="#594-automate-with-ansible"
-id="toc-594-automate-with-ansible">5.9.4 Automate with Ansible</a></li>
-<li><a href="#595-power-infrastructure-hmc"
-id="toc-595-power-infrastructure-hmc">5.9.5 Power infrastructure
-(HMC)</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#chapter-6-where-to-go-next"
-id="toc-chapter-6-where-to-go-next">Chapter 6. Where to go next</a></li>
 </ul>
 </nav>
 <main>
 <div class="titleblock">
-  <div class="kicker">IBM Bob Premium Package for i | Practitioner's
+  <div class="kicker">IBM Bob Premium Package for Z | Practitioner's
 guide</div>
-  <h1 class="title">Getting Started with IBM Bob and the Premium Package
-for i</h1>
-  <p class="subtitle">A hands-on guide for developers, green-screen
-programmers and administrators</p>
+  <h1 class="title">IBM Bob Premium Package for Z 3.x: Features, Modes,
+Workflows, Skills and Labs</h1>
+  <p class="subtitle">Features, modes, workflows, skills and hands-on
+labs for mainframe developers and architects</p>
 </div>
-<blockquote>
-<p>A short, hands-on guide for new Bob users on IBM i: developers,
-green-screen programmers and administrators. It is <strong>not a
-lab</strong>. It gives you ideas of what to try, with a method and
-example prompts for each. Adapt the <code>&lt;PLACEHOLDERS&gt;</code>,
-run it on something small, and see what happens.</p>
-</blockquote>
-<div class="table-wrap"><table>
-<thead>
-<tr>
-<th>If you are…</th>
-<th>Start with</th>
-<th>Then try</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>New to Bob</td>
-<td>Chapters 1, 2 and 4</td>
-<td>The "first 10 minutes" in 2.5</td>
-</tr>
-<tr>
-<td>A 5250 / SEU / PDM programmer</td>
-<td>Chapter 3</td>
-<td>Mini-tutorials 5.1 and 5.2</td>
-</tr>
-<tr>
-<td>A developer (RPG, CL, COBOL, DDS, SQL)</td>
-<td>Chapter 5.1 to 5.8</td>
-<td>The Flight400 labs</td>
-</tr>
-<tr>
-<td>An administrator / operator</td>
-<td>Chapter 5.9</td>
-<td>The Ops and SysAdmin lab</td>
-</tr>
-</tbody>
-</table></div>
+<p>IBM Bob Premium Package for Z (PPZ) is an AI-powered extension for
+IBM Bob IDE and Bob Shell. It combines guided workflows, automation and
+AI-driven insights to analyze, document, refactor and modernize
+mainframe applications written in COBOL and PL/I.</p>
+<p><strong>Languages:</strong> COBOL, PL/I, JCL, REXX, HLASM
+<strong>Middleware:</strong> CICS, IMS, MQ, Db2 <strong>Releases
+covered:</strong> 3.0.0 (June 2026) to 3.1.10 (October 2026)</p>
 <hr />
-<h1 id="chapter-1-introduction">Chapter 1. Introduction</h1>
-<h2 id="11-what-bob-and-the-premium-package-for-i-bring">1.1 What Bob
-and the Premium Package for i bring</h2>
-<p><strong>IBM Bob</strong> is an AI development assistant built into a
-VS Code-based IDE. You work through prompts, and Bob breaks each task
-into an editable to-do list, reads and edits files, runs commands, and
-asks for your approval before acting. The <strong>Premium Package for i
-(PPi)</strong> adds IBM i expertise on top of it.</p>
+<h2 id="1-key-features">1. Key Features</h2>
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>Concept</th>
-<th>What it is</th>
-<th>Remember</th>
+<th>Area</th>
+<th>Capability</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Mode</strong></td>
-<td>A persona with a restricted set of tools</td>
-<td>Use the lightest mode that does the job (see 2.2)</td>
+<td>Guided workflows</td>
+<td>Structured, repeatable workflows for data dictionary, documentation,
+business rules, explanation, optimization, refactoring and Java
+transformation</td>
 </tr>
 <tr>
-<td><strong>Skill</strong></td>
-<td>Expert know-how loaded automatically when your request matches</td>
-<td>You don't call it, you just ask clearly. PPi ships about 34 (Db2 for
-i, RPG, CL, DDS, Understand)</td>
+<td>Legacy understanding</td>
+<td>Analysis of programs, copybooks, dependencies and control-flow
+paths, stored as a local metadata database</td>
 </tr>
 <tr>
-<td><strong>Workflow</strong></td>
-<td>A guided multi-step process, started from the workflow icon</td>
-<td>More repeatable and cheaper than a long free-form prompt</td>
+<td>Integrated documentation</td>
+<td>Program and application documentation, business rules extraction and
+multi-perspective explanations</td>
 </tr>
 <tr>
-<td><strong>Tools / MCP</strong></td>
-<td>Actions on your system: read members, run SQL, CL and PASE, write to
-the IFS, compile</td>
-<td>Destructive CL and SQL always ask for approval</td>
+<td>Transformation</td>
+<td>Implementation planning, service extraction (refactoring),
+COBOL/PL/I to Java planning and validation</td>
 </tr>
 <tr>
-<td><strong>Scope</strong></td>
-<td>Where Bob works: Library List (QSYS), IFS or local workspace</td>
-<td>Chosen with the <code>+</code> button (see 2.3)</td>
+<td>Governance</td>
+<td>Coding standards skills, ZCodeScan, impact analysis, data
+dictionary</td>
 </tr>
 <tr>
-<td><strong><code>/init</code></strong></td>
-<td>Scans your project once and writes persistent <code>AGENTS</code>
-context</td>
-<td>Run it once per project and keep the result short</td>
+<td>Deployment options</td>
+<td>SaaS; on-premises on Red Hat OpenShift (including air-gapped); Z
+Understand and Refactor standalone on OpenShift; zCX; Bob Shell on
+Z</td>
 </tr>
 <tr>
-<td><strong>Understand</strong></td>
-<td>A persistent scan of an application: objects, dependencies,
-most-referenced objects, dynamic SQL</td>
-<td>Bob answers from metadata instead of re-reading source</td>
+<td>Remote access</td>
+<td>z/OS virtual workspaces through Zowe Explorer</td>
 </tr>
 <tr>
-<td><strong><code>.bobignore</code></strong></td>
-<td>Files Bob must not read</td>
-<td><code>node_modules/</code>, <code>dist/</code>, logs, generated
-files</td>
+<td>Z-specific knowledge</td>
+<td>Z Context tool (retrieval over IBM Z documentation)</td>
 </tr>
 </tbody>
 </table></div>
-<p>PPi adds two modes (<strong>IBM i Developer</strong> and <strong>IBM
-i Database</strong>), IBM i tools, about 34 skills, guided workflows,
-<code>/erd</code>, RPGUnit tooling, IBM i documentation search and
-automatic injection of your connection context (library list, OS
-version, CCSID).</p>
-<h2 id="12-use-cases-at-a-glance">1.2 Use cases at a glance</h2>
-<p>Cost is relative token consumption: <strong>¢</strong> small,
-<strong>¢¢</strong> medium, <strong>¢¢¢</strong> large. Operations and
-administration is a use case like any other: Bob queries IBM i services,
-reads job logs and writes reports for you.</p>
-<div class="table-wrap"><table>
-<thead>
-<tr>
-<th>#</th>
-<th>Use case</th>
-<th>Mode</th>
-<th>In action</th>
-<th>Cost</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>5.1</td>
-<td>Understand an unknown application</td>
-<td>IBM i Developer / Database</td>
-<td><code>/init</code>, Understand, <code>/erd</code>, Business Rules
-workflow</td>
-<td>¢¢</td>
-</tr>
-<tr>
-<td>5.2</td>
-<td>Explain and modernize a program (fixed to free)</td>
-<td>IBM i Developer</td>
-<td>Fixed to Free workflow, compile actions</td>
-<td>¢¢¢</td>
-</tr>
-<tr>
-<td>5.3</td>
-<td>Change a field end to end</td>
-<td>Plan, then IBM i Developer</td>
-<td>DDS and RPG skills, custom instructions</td>
-<td>¢¢¢</td>
-</tr>
-<tr>
-<td>5.4</td>
-<td>Analyze the impact of a change</td>
-<td>IBM i Developer</td>
-<td><code>QSYS2</code> dependency services, <code>search_ifs</code></td>
-<td>¢¢</td>
-</tr>
-<tr>
-<td>5.5</td>
-<td>Move from DDS and record-level access to SQL</td>
-<td>IBM i Developer / Database</td>
-<td><code>db2-dds-to-ddl</code>, <code>rpg-embedded-sql</code></td>
-<td>¢¢ to ¢¢¢</td>
-</tr>
-<tr>
-<td>5.6</td>
-<td>Review and tune SQL</td>
-<td>IBM i Database</td>
-<td><code>/review_sql</code>, Index Advisor workflow</td>
-<td>¢ to ¢¢</td>
-</tr>
-<tr>
-<td>5.7</td>
-<td>Test with RPGUnit</td>
-<td>IBM i Developer</td>
-<td>RPGUnit workflows and tools</td>
-<td>¢¢¢</td>
-</tr>
-<tr>
-<td>5.8</td>
-<td>Generate a modern UI from a green screen</td>
-<td>IBM i Developer</td>
-<td>DDS and RPG skills, your own skill</td>
-<td>¢¢¢</td>
-</tr>
-<tr>
-<td><strong>5.9</strong></td>
-<td><strong>Operate and administer your system (PTFs, security, jobs,
-performance, Ansible, HMC)</strong></td>
-<td><strong>IBM i Database / Developer</strong></td>
-<td><strong><code>execute_sql_statement</code>, <code>QSYS2</code>
-services, custom modes</strong></td>
-<td><strong>¢ to ¢¢</strong></td>
-</tr>
-</tbody>
-</table></div>
-<h2 id="13-how-to-use-this-guide">1.3 How to use this guide</h2>
-<p>Chapters 2 and 4 are common to everybody. Chapter 3 is for
-programmers coming from SEU and PDM. Chapter 5 holds the mini-tutorials:
-each one gives a goal, the setup, the steps with example prompts, what
-to look for, and the lab that goes deeper.</p>
-<p><strong>Placeholders:</strong> <code>&lt;LIB&gt;</code> library,
-<code>&lt;SRCF&gt;</code> source file, <code>&lt;MBR&gt;</code> member,
-<code>&lt;PGM&gt;</code> program, <code>&lt;PF&gt;</code> physical file,
-<code>&lt;DSPF&gt;</code> display file, <code>&lt;TABLE&gt;</code> SQL
-table, <code>&lt;COL&gt;</code> column, <code>&lt;JOB&gt;</code> job
-name.</p>
+<p>Documentation: <a
+href="https://bob.ibm.com/docs/ide/premium-packages/bob-for-z/bob-for-z-index">Bob
+for Z overview</a> · <a href="https://www.ibm.com/docs/en/bobz/3.x">IBM
+Docs, Bob for Z 3.x</a></p>
 <hr />
-<h1 id="chapter-2-getting-started">Chapter 2. Getting started</h1>
-<h2 id="21-set-up-in-six-steps">2.1 Set up in six steps</h2>
-<ol type="1">
-<li>Install <strong>Bob IDE</strong> and sign in with your IBM ID. Check
-that the team shown in <em>Settings, General</em> is the right one.</li>
-<li>Make sure <strong>IBM Bob Premium Package for i</strong> is
-installed and activated (Extensions view, reload Bob if asked). It
-unlocks the IBM i Developer and IBM i Database modes.</li>
-<li>Install the <strong>IBM i Development Pack</strong> (Code for IBM
-i).</li>
-<li>In the <strong>IBM i</strong> side bar, create a connection (host,
-user, SSH key or password).</li>
-<li>Add your library to the <strong>User Library List</strong> and to
-the <strong>Object Browser</strong>. Right-click it and choose
-<strong>Set as Current Library</strong> (needed by <code>/init</code> in
-QSYS).</li>
-<li>Open the Bob chat and do the two switches below.</li>
-</ol>
-<h2 id="22-switching-the-mode">2.2 Switching the mode</h2>
-<blockquote>
-<p><strong>Do not forget this one: switch to IBM i Developer (or IBM i
-Database).</strong> Bob may start in a generic mode. Generic modes do
-not have the IBM i tools, skills and workflows. If Bob behaves like a
-generic assistant, you are probably in the wrong mode.</p>
-</blockquote>
-<div class="table-wrap"><table>
-<thead>
-<tr>
-<th>How</th>
-<th>Where</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Mode selector</strong></td>
-<td>Dropdown on the left of the chat input field</td>
-</tr>
-<tr>
-<td><strong>Slash command</strong></td>
-<td>Type <code>/</code> and pick the mode (<code>/ask</code>,
-<code>/plan</code>, <code>/code</code>). Custom modes appear there
-too</td>
-</tr>
-<tr>
-<td><strong>Keyboard</strong></td>
-<td><code>Cmd/Ctrl + .</code> cycles through the modes</td>
-</tr>
-<tr>
-<td><strong>Bob's suggestion</strong></td>
-<td>Bob may propose a switch: accept it if it fits</td>
-</tr>
-</tbody>
-</table></div>
+<h2 id="2-modes-workflows-skills-and-tools">2. Modes, Workflows, Skills
+and Tools</h2>
+<h3 id="21-modes">2.1 Modes</h3>
 <div class="table-wrap"><table>
 <thead>
 <tr>
 <th>Mode</th>
-<th>Use it for</th>
-<th>Changes files?</th>
+<th>Purpose</th>
+<th>Typical users</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Ask</strong></td>
-<td>Questions, explanations, analysis</td>
-<td>No</td>
+<td><strong>Z Code</strong></td>
+<td>Day-to-day engineering: code explanation, change planning,
+implementation, documentation</td>
+<td>Developers</td>
 </tr>
 <tr>
-<td><strong>Plan</strong></td>
-<td>Designs and plans (<code>plan.md</code>)</td>
-<td>Markdown only</td>
-</tr>
-<tr>
-<td><strong>Agent / Code</strong></td>
-<td>Generic coding and automation</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><strong>IBM i Developer</strong></td>
-<td>RPG, CL, DDS, COBOL: explain, generate, compile, test,
-modernize</td>
-<td>Yes, with approval</td>
-</tr>
-<tr>
-<td><strong>IBM i Database</strong></td>
-<td>Db2 for i: SQL, tuning, indexes, catalog, security, IBM i
-services</td>
-<td>Yes, with approval</td>
-</tr>
-<tr>
-<td><em>Custom modes</em></td>
-<td>Your own personas, for example <code>ansible-for-i</code> or
-<code>hmc-operator</code></td>
-<td>As defined</td>
+<td><strong>Z Architect</strong></td>
+<td>Architecture and design: impact analysis, implementation planning,
+system analysis, technical documentation</td>
+<td>Architects, technical leads</td>
 </tr>
 </tbody>
 </table></div>
-<h2 id="23-switching-the-scope-with-the--button">2.3 Switching the scope
-with the + button</h2>
-<p>The scope is <strong>where Bob reads and writes your code</strong>.
-You choose it when you create a task, with the <strong><code>+</code>
-(New task)</strong> button above the chat window.</p>
+<p>Bob's standard modes (Agent, Plan, Ask) remain available and are used
+in the labs for file and command operations.</p>
+<p>Reference: <a
+href="https://bob.ibm.com/docs/ide/premium-packages/bob-for-z/modes">Modes</a></p>
+<h3 id="22-workflows">2.2 Workflows</h3>
+<p>Start a workflow with the <strong>Start Workflow</strong> button in
+the Bob chat panel, or with a slash command.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>Scope</th>
-<th>Bob works on</th>
-<th>Typical use</th>
+<th>Workflow</th>
+<th>Description</th>
+<th>Mode</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Library List (QSYS)</strong></td>
-<td>Source members and objects of your library list</td>
-<td>Source still lives in <code>QRPGSRC</code>,
-<code>QDDSSRC</code>…</td>
+<td>Generate data dictionary</td>
+<td>Maps variables to business-friendly descriptions (stored in
+<code>DD.json</code>)</td>
+<td>Z Code</td>
 </tr>
 <tr>
-<td><strong>IFS</strong></td>
-<td>Stream files in the IFS</td>
-<td>Source or docs in IFS folders, reports written to
-<code>$HOME</code></td>
+<td>Generate program documentation</td>
+<td>Structured documentation for COBOL, PL/I, HLASM and JCL
+programs</td>
+<td>Z Code</td>
 </tr>
 <tr>
-<td><strong>Local workspace</strong></td>
-<td>Files of your Git clone on your workstation</td>
-<td>Git and VS Code workflow (the recommended target)</td>
+<td>Generate application documentation</td>
+<td>Navigable HTML documentation with diagrams and cross-references</td>
+<td>Z Architect</td>
+</tr>
+<tr>
+<td>Explain code</td>
+<td>Explanations from Architect, Business or Developer perspective</td>
+<td>Z Code</td>
+</tr>
+<tr>
+<td>Extract business rules</td>
+<td>Structured business rules from COBOL, PL/I or HLASM</td>
+<td>Z Code</td>
+</tr>
+<tr>
+<td>Optimize COBOL program</td>
+<td>Performance bottlenecks and prioritized recommendations</td>
+<td>Z Code</td>
+</tr>
+<tr>
+<td>Refactor COBOL or PL/I program</td>
+<td>Identifies business logic to extract into service programs</td>
+<td>Z Code</td>
+</tr>
+<tr>
+<td>Generate refactored service program</td>
+<td>Creates the service program from extraction candidates</td>
+<td>Z Code</td>
+</tr>
+<tr>
+<td>Plan transformation to Java</td>
+<td>Requirements, architecture, implementation plan, readiness
+assessment</td>
+<td>Z Code</td>
+</tr>
+<tr>
+<td>Validate transformed code</td>
+<td>Generated test data and JUnit tests to verify functional
+equivalence</td>
+<td>Z Code</td>
 </tr>
 </tbody>
 </table></div>
+<p>Reference: <a
+href="https://bob.ibm.com/docs/ide/premium-packages/bob-for-z/workflows">Workflows</a></p>
+<h3 id="23-slash-commands">2.3 Slash Commands</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/init</code></td>
+<td>Analyzes the codebase and generates <code>AGENTS.md</code></td>
+</tr>
+<tr>
+<td><code>/data-dictionary-management</code></td>
+<td>Generates a data dictionary</td>
+</tr>
+<tr>
+<td><code>/sync-data-dictionary</code></td>
+<td>Synchronizes the local data dictionary with the central copy on the
+Z Understand server</td>
+</tr>
+<tr>
+<td><code>/explain</code></td>
+<td>Multi-perspective explanation of a whole source file</td>
+</tr>
+<tr>
+<td><code>/refactor</code></td>
+<td>Interactive refactoring with Z Understand extraction</td>
+</tr>
+<tr>
+<td><code>/refactor-report-generation</code></td>
+<td>Reports for service refactoring efforts</td>
+</tr>
+<tr>
+<td><code>/impact-analysis</code></td>
+<td>Impact analysis for a proposed change</td>
+</tr>
+<tr>
+<td><code>/implementation-planning</code></td>
+<td>Implementation plan for a business requirement</td>
+</tr>
+<tr>
+<td><code>/z-coding-standards-skill-builder</code></td>
+<td>Builds coding standards from existing code</td>
+</tr>
+<tr>
+<td><code>/sign-in-to-z-understand</code></td>
+<td>Authenticates with the Z Understand server</td>
+</tr>
+</tbody>
+</table></div>
+<p>Reference: <a
+href="https://bob.ibm.com/docs/ide/premium-packages/bob-for-z/Using_commands">Using
+commands</a></p>
+<h3 id="24-skills">2.4 Skills</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Skill</th>
+<th>Purpose</th>
+<th>Mode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>z-coding-standards-skill-builder</code></td>
+<td>Consistent coding standards</td>
+<td>Z Code</td>
+</tr>
+<tr>
+<td><code>implementation-planning</code></td>
+<td>Implementation plans based on Z Understand analysis</td>
+<td>Z Architect</td>
+</tr>
+<tr>
+<td><code>impact-analysis</code></td>
+<td>Impact of changes across COBOL, PL/I, JCL, Assembler, REXX</td>
+<td>Z Architect</td>
+</tr>
+<tr>
+<td><code>data-dictionary-management</code></td>
+<td>Create and maintain COBOL and PL/I data dictionaries</td>
+<td>Z Code, Z Architect</td>
+</tr>
+<tr>
+<td><code>refactor-report-generation</code></td>
+<td>Reports for service refactoring</td>
+<td>Z Code</td>
+</tr>
+<tr>
+<td><code>zdebug-cobol-batch-mode-jcl</code> (3.1.0+)</td>
+<td>Creates and diagnoses batch JCL for debugging COBOL with Z Open
+Debug</td>
+<td>Z Code</td>
+</tr>
+<tr>
+<td><code>explain</code></td>
+<td>Whole-file explanations. Not supported from release 3.0.20; use the
+Explain code workflow</td>
+<td>Z Code, Z Architect</td>
+</tr>
+</tbody>
+</table></div>
+<p>Reference: <a
+href="https://bob.ibm.com/docs/ide/premium-packages/bob-for-z/Using_skills">Using
+skills</a></p>
+<h3 id="25-tool-groups">2.5 Tool Groups</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Main tools</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Scanning and control flow</td>
+<td><code>scan_program</code>, <code>get_control_flow</code>,
+<code>get_paragraphs</code>, <code>execute_sql_query</code></td>
+</tr>
+<tr>
+<td>Data dictionary</td>
+<td><code>get_variables</code>, <code>edit_data_dictionary</code>,
+<code>sync_data_dictionary</code></td>
+</tr>
+<tr>
+<td>Z Open Editor / ZCodeScan</td>
+<td><code>zopeneditor-cobol-get-program-control-flow</code>,
+<code>zopeneditor-cobol-get-data-flow</code>,
+<code>zcodescan-check-current-program</code></td>
+</tr>
+<tr>
+<td>Project-wide discovery (Z Understand)</td>
+<td><code>sign_in_to_z_understand</code>,
+<code>get_project_programs</code>,
+<code>get_project_resource_usage</code>,
+<code>get_project_inventory</code></td>
+</tr>
+<tr>
+<td>Refactoring</td>
+<td><code>refactor</code>, <code>submit_refactor_findings</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>Reference: <a
+href="https://bob.ibm.com/docs/ide/premium-packages/bob-for-z/Using_tools">Using
+tools and tool groups</a></p>
+<hr />
+<h2 id="3-latest-features-last-4-weeks">3. Latest Features (Last 4
+Weeks)</h2>
+<p>The most recent release in the changelog is <strong>3.1.10</strong>,
+published in <strong>October 2026</strong>. The changelog gives the
+month only, not the day. Earlier releases (3.1.0, September 2026) fall
+outside the 4-week window.</p>
+<p>Reference: <a
+href="https://bob.ibm.com/docs/ide/changelog?tab=premium-ibm-z">Changelog,
+IBM Z tab</a></p>
+<h3 id="31-new-in-3110">3.1 New in 3.1.10</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Platform-specific VSIX packages</td>
+<td>Packages for <code>linux-x64</code>, <code>darwin-arm64</code> and
+<code>win32-x64</code>; a universal VSIX remains available</td>
+</tr>
+<tr>
+<td>Analysis scope in <code>zapp.yaml</code></td>
+<td>An <code>analysis</code> profile limits analysis to chosen
+directories and languages (COBOL, PL/I, JCL, HLASM); optional IMS and
+CICS settings</td>
+</tr>
+<tr>
+<td>Analysis metadata management</td>
+<td>Indexed workspace representation with incremental scanning and
+status indicators; can be enabled or disabled in settings</td>
+</tr>
+<tr>
+<td>Plan transformation to Java</td>
+<td>Generates requirements, architecture, implementation plans and
+readiness assessment; supports service decomposition</td>
+</tr>
+<tr>
+<td>Validate transformed code</td>
+<td>Generates test data and JUnit tests, maps source behavior to Java,
+produces validation reports; works without mainframe connectivity</td>
+</tr>
+<tr>
+<td>Quantum Safe Cryptography</td>
+<td>Discovery and assessment of cryptographic assets for
+quantum-readiness planning</td>
+</tr>
+<tr>
+<td>JCL Call Extensibility Examples</td>
+<td>Sample configurations for custom JCL call patterns</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="32-improvements-in-3110">3.2 Improvements in 3.1.10</h3>
 <ul>
-<li>To change the scope, <strong>start a new task</strong> with
-<code>+</code> and pick another scope. Behavior differs slightly per
-scope: experiment and decide.</li>
-<li>Source can stay in QSYS or move to the IFS and Git. Moving is
-recommended, but <strong>just because you can keep it in QSYS doesn't
-mean you should</strong>.</li>
-<li>In the task <strong>Permissions</strong> menu, enable
-<strong>Documentation</strong> (IBM i documentation search) and
-<strong>Understand</strong> (application scan) so Bob can use them.</li>
+<li>Data dictionary synchronization between local workspace and central
+repository.</li>
+<li>Updated synchronization file format with member-type selection and
+regex filtering for PDS and Endevor sources.</li>
+<li>Custom-built scanner integration with the IBM Application Discovery
+BuildClient CLI supports incremental builds.</li>
+<li>CRYPTO API and BMS map support for COBOL, PL/I and HLASM.</li>
+<li>Program documentation completion summary with direct links to all
+generated <code>.md</code> files.</li>
+<li>zTPF macro descriptions included in Assembler business rules
+extraction; <code>overview.md</code> generated for Assembler.</li>
+<li><strong>Skip Regeneration</strong> option for code explanation in
+the Settings page.</li>
 </ul>
-<h2 id="24-know-the-chat-panel">2.4 Know the chat panel</h2>
+<h3 id="33-previous-release-milestones">3.3 Previous Release
+Milestones</h3>
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>Element</th>
-<th>What for</th>
+<th>Release</th>
+<th>Date</th>
+<th>Highlights</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Input field</strong></td>
-<td><code>@</code> adds context (file, line range, problems, terminal,
-git changes). <code>/</code> opens slash commands</td>
+<td>3.1.0</td>
+<td>September 2026</td>
+<td>On-premises deployment on OpenShift, standalone Z Understand and
+Refactor, Extension Pack, Check Project for JCL and HLASM, Endevor
+support, AI-powered COBOL performance recommendations</td>
 </tr>
 <tr>
-<td><strong>Workflow icon</strong> (top of the panel)</td>
-<td>Starts a guided workflow: Fixed to Free, Business Rules, Index
-Advisor, RPGUnit…</td>
+<td>3.0.20</td>
+<td>August 2026</td>
+<td>Decisions feature, Explain code from natural-language prompts, z/OS
+virtual workspaces with Zowe Explorer, JCL documentation, multi-lingual
+documentation</td>
 </tr>
 <tr>
-<td><strong>Auto-approve toolbar</strong></td>
-<td>Lets Bob act without asking, per action type</td>
+<td>3.0.10</td>
+<td>August 2026</td>
+<td>Check Project, Bring Your Own Scanner, zCX support, CA7 reports
+offline, program and application documentation workflows, Z Context
+tool</td>
 </tr>
 <tr>
-<td><strong>Context gauge</strong> (top right)</td>
-<td>Shows how full the context is</td>
-</tr>
-<tr>
-<td><strong>Files changed</strong> (bottom of the chat)</td>
-<td>Click to see the diff</td>
-</tr>
-<tr>
-<td><strong>Settings, Modes</strong></td>
-<td>Edit a mode's <em>Custom Instructions</em> (your standing
-rules)</td>
+<td>3.0.0</td>
+<td>June 2026</td>
+<td>Structured workflows, data dictionary with bulk generation and sync,
+program documentation and business rules extraction, Bob Shell in the Z
+Understand Linux container</td>
 </tr>
 </tbody>
 </table></div>
-<p><strong>Slash commands worth knowing:</strong> <code>/init</code>
-(project context), <code>/review</code> (review of uncommitted changes),
-<code>/review_sql</code> (PPi: review a SQL statement),
-<code>/erd &lt;LIB&gt;</code> (ER diagram, PPi),
-<code>/create-pr</code>, <code>/compact &lt;WHAT_TO_KEEP&gt;</code>
-(condense the context).</p>
-<h2 id="25-your-first-10-minutes">2.5 Your first 10 minutes</h2>
-<ol type="1">
-<li>Open a program in the editor. Mode <strong>IBM i Developer</strong>,
-scope <strong>Library List (QSYS)</strong>.</li>
-<li>Ask: <em>"What does this program do?"</em></li>
-<li>Run <code>/init</code> once, then open the generated
-<code>AGENTS</code> context and read what Bob learned.</li>
-<li>Ask: <em>"Generate a Markdown architecture overview of
-<code>&lt;LIB&gt;</code> with a Mermaid diagram."</em></li>
-<li>Ask for something you can verify (a count, a name, a relationship),
-and check that Bob is right.</li>
-</ol>
 <hr />
-<h1 id="chapter-3-coming-from-the-green-screen">Chapter 3. Coming from
-the green screen</h1>
-<p>If you work with SEU, PDM and a 5250 session, nothing is taken away
-from you: the system, the objects and the libraries are the same. What
-changes is the tool in front of you.</p>
-<h2 id="31-from-seu-and-pdm-to-code-for-ibm-i">3.1 From SEU and PDM to
-Code for IBM i</h2>
+<h2 id="4-practical-labs--tools-matrix">4. Practical Labs &amp; Tools
+Matrix</h2>
+<p>The labs use the CICS Banking Sample Application (CBSA) and are
+published in English in the <a
+href="https://github.com/ovallod/Bob4z-a-thon/tree/main/EN">Bob4z-a-thon
+repository</a>. A French version is available in the <a
+href="https://github.com/ovallod/Bob4z-a-thon/tree/main/FR">FR
+folder</a>.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>In the 5250 you used…</th>
-<th>In Bob IDE (Code for IBM i) you use…</th>
+<th>Lab</th>
+<th>Tools, skills and workflows used</th>
+<th>Learning objectives</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>PDM: libraries, files, members</td>
-<td><strong>Object Browser</strong>, <strong>Member Browser</strong> and
-<strong>IFS Browser</strong> in the IBM i side bar</td>
+<td><strong>1. Discover CBSA</strong> (<a
+href="https://github.com/ovallod/Bob4z-a-thon/blob/main/EN/1-LabDiscoverCBSA_EN.md">source</a>)</td>
+<td>Modes: Z Code, Z Architect, Agent. <code>/init</code> with
+<code>scan_program</code>; Generate data dictionary workflow;
+<code>execute_sql_query</code>;
+<code>/z-coding-standards-skill-builder</code>; <code>/explain</code>;
+Generate documentation workflow (business rules); draw.io diagrams;
+impact analysis and implementation planning</td>
+<td>Define naming and organization rules; initialize the workspace;
+build a data dictionary, application inventory and coding standards;
+produce architecture diagrams; document programs and business rules; run
+an impact analysis (fixed to variable SORTCODE); document the user
+journey; plan and implement a new feature (search by email)</td>
 </tr>
 <tr>
-<td>SEU, to edit a source member</td>
-<td>The VS Code editor (syntax highlighting, search across files,
-diff)</td>
+<td><strong>2. Discover CBSA Global</strong> (<a
+href="https://github.com/ovallod/Bob4z-a-thon/blob/main/EN/2-LabDiscoverCBSAGlobal_EN.md">source</a>)</td>
+<td>Modes: Agent (front-end retrieval), Z Code. <code>/init</code>
+(<code>AGENTS.md</code>); data dictionary workflow; COBOL and front-end
+inventories; draw.io diagrams</td>
+<td>Extend the CBSA analysis to the front end (Java, React, APIs);
+produce backend and frontend inventories and architecture diagrams;
+analyze a functional flow (local transfer); write a user guide; analyze
+credit scoring technically</td>
 </tr>
 <tr>
-<td>Option 14 / <code>CRTBNDRPG</code> to compile</td>
-<td><strong>Compile actions</strong> (and Bob can run them for you)</td>
+<td><strong>3. Skill Builder &amp; Refactor</strong> (<a
+href="https://github.com/ovallod/Bob4z-a-thon/blob/main/EN/3-LabSkillBuilder-Refactor_EN.md">source</a>)</td>
+<td>Z Code: <code>/z-coding-standards-skill-builder</code>. Z Architect:
+<code>/refactor</code> (Z Understand extraction),
+<code>extractionGoal.md</code></td>
+<td>Generate a custom coding standards skill and use it to generate
+compliant code; refactor <code>INQCUST</code> from VSAM to Db2: analyze,
+design the Db2 model, run interactive refactoring, plan migration and
+tests</td>
 </tr>
 <tr>
-<td><code>EDTLIBL</code> / <code>DSPLIBL</code></td>
-<td><strong>User Library List</strong> in the side bar</td>
-</tr>
-<tr>
-<td><code>STRSQL</code> / <code>RUNSQLSTM</code></td>
-<td><strong>SQL editor</strong> and <strong>Database Browser</strong>
-with a result panel</td>
-</tr>
-<tr>
-<td><code>STRDBG</code></td>
-<td>The debugger of Code for IBM i</td>
-</tr>
-<tr>
-<td>The 5250 session itself</td>
-<td>Still available with IBM i Access Client Solutions, whenever you
-want it</td>
+<td><strong>4. Optimize SQL &amp; Db2 Config</strong> (<a
+href="https://github.com/ovallod/Bob4z-a-thon/blob/main/EN/4-LabOptimiseSQL%26DB2Config_EN.md">source</a>)</td>
+<td>Modes: Agent, Z Code. Embedded SQL inventory; Db2 DDL JCL analysis;
+ERD generation; performance analysis; JCL generation; draw.io
+export</td>
+<td>Inventory embedded SQL statements; detect anti-patterns (for example
+multi-row fetch, lock contention); reverse-engineer DDL to an
+entity-relationship diagram and storage hierarchy; recommend and
+implement improvements (for example the missing <code>PROCTRAN</code>
+index); export diagrams to draw.io</td>
 </tr>
 </tbody>
 </table></div>
-<p>Three ways to store source, from the least to the most change:
-<strong>edit QSYS members</strong> from VS Code, <strong>keep source in
-the IFS</strong> (recommended for new projects, Git and CI/CD friendly),
-or <strong>work locally and sync</strong> through Git. Start with QSYS
-members if that is where you are, and move when you are ready.</p>
-<h2 id="32-code-for-ibm-i-in-five-minutes">3.2 Code for IBM i in five
-minutes</h2>
-<ol type="1">
-<li><code>Cmd/Ctrl + Shift + P</code>, then <strong>Welcome: Open
-Walkthrough</strong>, then search for <strong>IBM i</strong>.</li>
-<li>Follow <em>Get started with Code for IBM i</em>: connect, browse
-objects, open a member.</li>
-<li>Open a member from the Member Browser and compile it with a compile
-action.</li>
-</ol>
-<h2 id="33-where-bob-helps-a-green-screen-developer">3.3 Where Bob helps
-a green-screen developer</h2>
-<pre><code>Explain what the CL command &lt;CMD&gt; does, with an example, and give me the QSYS2 SQL service equivalent.</code></pre>
-<pre><code>I used to run WRKACTJOB sorted by CPU. Show me the same information with SQL, and explain each column.</code></pre>
-<pre><code>Explain this RPG program line by line for someone who knows RPG III but not free-format RPG IV.</code></pre>
-<p><strong>Learn more</strong> (Bob IBM i 101 material):</p>
-<ul>
-<li><a
-href="https://github.com/bmarolleau/ibmi-101/blob/main/IBMi-Complete-Developer-Guide-EN.md">IBM
-i Complete Developer Guide</a>: platform, tools, build,
-modernization.</li>
-<li><a
-href="https://github.com/bmarolleau/ibmi-101/blob/main/IBMi-Complete-Developer-Guide-EN.md#how-to-use-visual-studio-code-on-ibm-i">How
-to use Visual Studio Code on IBM i</a>.</li>
-<li><a
-href="https://github.com/bmarolleau/ibmi-101/tree/main/tutorials">Video
-tutorials and written episodes</a>: <em>Hello World</em>, <em>Service
-programs</em>, <em>Activation groups</em>.</li>
-<li><a href="https://codefori.github.io/docs/">Code for IBM i
-documentation</a>.</li>
-</ul>
-<hr />
-<h1 id="chapter-4-best-practices">Chapter 4. Best practices</h1>
-<h2 id="41-write-good-prompts">4.1 Write good prompts</h2>
-<p><strong>Scope, task, constraints, output:</strong></p>
-<pre><code>Scope:        In &lt;LIB&gt;/&lt;SRCF&gt;, member &lt;MBR&gt;.
-Task:         Explain the validation logic of the order entry screen.
-Constraints:  Read-only. Separate facts from inferences. Max 5 findings.
-Output:       Markdown table, saved as docs/&lt;MBR&gt;-validation.md.</code></pre>
+<h3 id="tool-and-capability-coverage-by-lab">Tool and Capability
+Coverage by Lab</h3>
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th>Vague</th>
-<th>Precise</th>
+<th>Capability</th>
+<th style="text-align: center;">Lab 1</th>
+<th style="text-align: center;">Lab 2</th>
+<th style="text-align: center;">Lab 3</th>
+<th style="text-align: center;">Lab 4</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>"Fix the code"</td>
-<td>"Fix the SQL0122 in <code>@query.sql:10-45</code>. Don't change
-column aliases."</td>
+<td><code>/init</code> and <code>AGENTS.md</code></td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td>"Modernize everything"</td>
-<td>"Modernize <code>&lt;PGM&gt;</code> only. Same behavior. Show the
-diff, don't compile."</td>
+<td>Data dictionary</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td>"Check the system"</td>
-<td>"Top 10 active jobs by CPU. Separate cumulative CPU from current
-%."</td>
+<td>Application inventory</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✓</td>
+</tr>
+<tr>
+<td>Coding standards skill</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>Code explanation and business rules</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>Impact analysis and planning</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>Refactoring (<code>/refactor</code>)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>Architecture diagrams (draw.io)</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✓</td>
+</tr>
+<tr>
+<td>SQL and Db2 analysis</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
+</tr>
+<tr>
+<td>Front-end analysis</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>Code generation</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;">✓</td>
 </tr>
 </tbody>
 </table></div>
-<p>Handy phrases: <em>"Do not modify anything."</em>, <em>"Show the diff
-and wait for my approval."</em>, <em>"Stop after that
-investigation."</em>, <em>"No more than two recommendations."</em>,
-<em>"Flag other impacted objects as follow-up only."</em></p>
-<p>Put <strong>standing rules</strong> (naming, column alignment, "never
-compile until I say so") in the mode's <strong>Custom
-Instructions</strong> or in <code>AGENTS</code>, not in every
-prompt.</p>
-<h2 id="42-spend-tokens-wisely">4.2 Spend tokens wisely</h2>
-<p>Every message resends the whole context, so <strong>the cost grows
-with the conversation</strong>. A blank task already weighs about 10k
-tokens (system prompt, tools) before you type anything.</p>
-<p><strong>Start clean</strong></p>
-<ul class="task-list">
-<li><label><input type="checkbox" />Start a new task as soon as the
-topic changes. No long multi-topic conversations.</label></li>
-<li><label><input type="checkbox" />Use
-<code>/compact &lt;WHAT_TO_KEEP&gt;</code> to condense the context when
-you must follow up on a big task.</label></li>
-</ul>
-<p><strong>Stay light</strong></p>
-<ul class="task-list">
-<li><label><input type="checkbox" />Lightest mode first: <strong>Ask
-&lt; Plan &lt; Agent</strong> in token consumption.</label></li>
-<li><label><input type="checkbox" />Keep <code>AGENTS.md</code> short:
-every line is paid on every turn.</label></li>
-<li><label><input type="checkbox" />Enable only the skills and MCP
-servers a project needs: their definitions load even if never
-called.</label></li>
-<li><label><input type="checkbox" />Add a <code>.bobignore</code>
-(<code>node_modules/</code>, <code>dist/</code>, logs, generated
-files).</label></li>
-<li><label><input type="checkbox" />Prefer <strong>Understand</strong>,
-<code>/init</code> and <strong>workflows</strong> over making Bob
-re-read source.</label></li>
-</ul>
-<p><strong>Be surgical</strong></p>
-<ul class="task-list">
-<li><label><input type="checkbox" /><code>@</code> mentions: one file
-and a line range, never a whole folder.</label></li>
-<li><label><input type="checkbox" />Use <strong>subagents</strong> to
-explore: they return a compact summary without polluting the main
-conversation.</label></li>
-</ul>
-<p><strong>Recover</strong></p>
-<ul class="task-list">
-<li><label><input type="checkbox" />Watch the context
-gauge.</label></li>
-<li><label><input type="checkbox" /><strong>Rollback beats
-arguing.</strong> If Bob drifts, go back to the last good
-message.</label></li>
-<li><label><input type="checkbox" />Skills worth a look:
-<strong>RTK</strong>, <strong>Ponytail</strong>.</label></li>
-</ul>
-<h2 id="43-working-patterns">4.3 Working patterns</h2>
-<div class="table-wrap"><table>
-<thead>
-<tr>
-<th>Pattern</th>
-<th>How</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Plan, then implement</strong></td>
-<td>In <strong>Plan</strong> mode, get a plan and save it as
-<code>plan.md</code>. Review it. Then start a <strong>new task</strong>
-and implement it <strong>item by item</strong>, one diff at a time, with
-no compile until you say so</td>
-</tr>
-<tr>
-<td><strong>Subagent exploration</strong></td>
-<td>"Explore how <code>&lt;TABLE&gt;</code> is used and give me a
-10-line summary"</td>
-</tr>
-<tr>
-<td><strong>Spec-Driven Development</strong></td>
-<td>Write a spec and let Bob derive plan, tasks and code. Tools:
-<strong>spec-kit</strong>, <strong>OpenSpec</strong>. Good for new APIs
-and UI around IBM i</td>
-</tr>
-<tr>
-<td><strong>Narrow scope</strong></td>
-<td>Name the objects allowed to change. Everything else is
-"follow-up"</td>
-</tr>
-<tr>
-<td><strong>Skill from what works</strong></td>
-<td>Paste a good procedure and say <em>"Create a skill from the pasted
-text."</em> Share it in the repo</td>
-</tr>
-<tr>
-<td><strong>Review before commit</strong></td>
-<td><code>/review</code>, then <code>/create-pr</code></td>
-</tr>
-</tbody>
-</table></div>
-<h2 id="44-guardrails">4.4 Guardrails</h2>
-<ul>
-<li>Destructive CL (<code>DLT*</code>, <code>CHG*</code>,
-<code>CPY*</code>) and SQL (<code>DROP</code>, <code>DELETE</code>,
-<code>INSERT</code>, <code>UPDATE</code>) ask for your approval.
-<strong>Read before approving.</strong></li>
-<li>Keep auto-approve <strong>off</strong> for Write and Execute,
-especially near production.</li>
-<li>Build into a <strong>test library</strong>, not the production
-one.</li>
-<li>No credentials in prompts, <code>AGENTS</code> or MCP configuration
-files.</li>
-<li>Bob is an assistant: <strong>compile, test and review</strong> what
-it produces.</li>
-</ul>
-<hr />
-<h1 id="chapter-5-use-cases-and-mini-tutorials">Chapter 5. Use cases and
-mini-tutorials</h1>
-<p>Each mini-tutorial follows the same shape: <strong>Goal</strong>,
-<strong>Setup</strong>, <strong>Steps</strong> with example prompts,
-<strong>Look for</strong>, and the <strong>Lab</strong> to go deeper.
-Labs: <em>Flight400</em> is <a
-href="https://github.com/bmarolleau/flight400-demo">flight400-demo</a>
-(7 exercises, source in QSYS); <em>Lab 1xx</em> and <em>Lab 2xx</em> are
-in the <a
-href="https://github.com/bmarolleau/IBM-i-Application-Modernization-with-Bob">IBM-i-Application-Modernization-with-Bob</a>
-repository.</p>
-<h2 id="51-understand-an-unknown-application">5.1 Understand an unknown
-application</h2>
-<p><strong>Goal:</strong> map an undocumented application (programs,
-files, dependencies, business rules) without reading it all.
-<strong>Setup:</strong> IBM i Developer, scope Library List,
-Permissions: Documentation and Understand on.</p>
-<ol type="1">
-<li><strong>Onboard Bob.</strong> Set <code>&lt;LIB&gt;</code> as the
-current library, then type <code>/init</code>. Open the generated
-<code>AGENTS</code> member in <code>QBOBSRC</code> and read it.</li>
-<li><strong>Scan with Understand.</strong> Open the Understand
-dashboard, create an application with your object library and a metadata
-library, and scan. Check the inventory: OPM vs ILE, files, service
-programs, dynamic SQL, most-referenced objects. Then ask:
-<pre><code>What are the high-level functional areas of &lt;LIB&gt;? Use the Understand scan data.</code></pre></li>
-<li><strong>Architecture document.</strong>
-<pre><code>Generate a comprehensive architecture overview of the &lt;LIB&gt; application in Markdown: high-level description, main program flows, key programs and their roles, a Mermaid architecture diagram, and the database tables used. Save it as docs/&lt;LIB&gt;-architecture.md.</code></pre></li>
-<li><strong>Data model.</strong> Switch to IBM i Database and type
-<code>/erd &lt;LIB&gt;</code>.</li>
-<li><strong>Business rules.</strong> Click the workflow icon, run
-<strong>Business Rules Extraction</strong> in your library list, and
-give the library, source file and member.</li>
-<li><em>(Optional)</em> Ask for a draw.io diagram of programs, menus and
-files, saved to the IFS.</li>
-</ol>
-<p><strong>Look for:</strong> the most-referenced objects (your highest
-change risk), dynamic SQL, forgotten programs. Compare the generated
-rules with what the team believes. <strong>Lab:</strong> Flight400
-exercise 1, Lab 101.</p>
-<h2 id="52-explain-and-modernize-a-program">5.2 Explain and modernize a
-program</h2>
-<p><strong>Goal:</strong> understand an old OPM RPG program, then
-convert it to free-format ILE RPG that compiles. <strong>Setup:</strong>
-IBM i Developer, scope Library List (or local workspace), program open
-in the editor.</p>
-<ol type="1">
-<li><strong>Explain.</strong>
-<pre><code>What does this program do? Cover purpose, files used, screens, and the key subroutines.</code></pre></li>
-<li><strong>Convert.</strong> Ask <em>"Can you modernize this
-program?"</em> and choose <strong>Start workflow</strong> (RPG
-Modernization, Fixed to Free). Confirm the source file and member, then
-<strong>Analyze Member</strong>. Bob converts the specifications in
-order (H, F, D, C), uses a subagent, and compiles.</li>
-<li><strong>Place the output.</strong> When asked for the output member
-location, check the library and path, then approve.</li>
-<li><strong>Review.</strong> Read the <em>Modernization Summary</em>
-(what changed, lines before and after, compile result) and open the diff
-in the <em>Files changed</em> list.</li>
-<li><strong>Challenge it.</strong>
-<pre><code>List any behavior differences or risks between the original and the converted program. Do not modify anything.</code></pre></li>
-<li><strong>Go further.</strong> <em>"Rename all 6-character variables
-to meaningful names."</em>, <em>"Use built-in date functions."</em>,
-<em>"Split the logic into procedures."</em></li>
-</ol>
-<p><strong>Look for:</strong> a clean compile, identical behavior, and
-the changes Bob proposes beyond the strict conversion.
-<strong>Lab:</strong> Flight400 exercise 2, Lab 102.</p>
-<h2 id="53-change-a-field-end-to-end">5.3 Change a field end to end</h2>
-<p><strong>Goal:</strong> add a field from the physical file to the 5250
-screen, safely, in small approved steps. <strong>Setup:</strong> IBM i
-Developer, scope Library List. This is the <strong>plan, then
-implement</strong> pattern.</p>
-<ol type="1">
-<li><strong>Add standing rules.</strong> <em>Settings, Modes, IBM i
-Developer, pencil icon, Custom Instructions</em>. For example:
-<pre><code>When a user asks to plan or implement code changes:
-- Make insert-only changes with apply_diff; show the diff and wait for my approval; never compile until I say so.
-- Copy the model line&#39;s EXACT column positions in fixed-form RPG and DDS; change only the name and value.
-- COLHDG belongs only in the physical file, never in the display file.</code></pre></li>
-<li><strong>Explore.</strong>
-<pre><code>Preview display file &lt;DSPF&gt; in &lt;LIB&gt; and list every field, with its input/output type and naming convention. Do not modify anything.</code></pre></li>
-<li><strong>Plan only.</strong>
-<pre><code>Let&#39;s plan first. Do not write, edit, save, or compile anything.
-Add &quot;&lt;new business field&gt;&quot; as &lt;NEWFLD&gt; (&lt;type&gt;) to &lt;PF&gt;, exposed as &lt;LFFLD&gt; in &lt;LF&gt;, and as &lt;SCRFLD&gt; on &lt;DSPF&gt; right after &lt;MODELFIELD&gt;.
-Mirror how &lt;MODELFIELD&gt; flows today: &lt;PF&gt;.&lt;MODEL&gt; -&gt; &lt;LF&gt;.&lt;MODEL2&gt; -&gt; &lt;PGM&gt; -&gt; &lt;DSPF&gt;.&lt;SCRMODEL&gt;.
-Only these four objects may change: &lt;PF&gt;, &lt;LF&gt;, &lt;DSPF&gt;, &lt;PGM&gt;. List any other program using them as follow-up only.</code></pre></li>
-<li><strong>Implement the DDS.</strong> <em>"Execute the approved plan
-for the DDS members only, one at a time. For each, show the diff, wait
-for my approval, then save the source only. Do not compile."</em></li>
-<li><strong>Implement the RPG in three small diffs</strong>: file and
-input specs, then calculation specs, then output specs. Approve each
-one.</li>
-<li><strong>Build only what is in scope.</strong>
-<pre><code>Build only the four objects, in order: PF, LF, display file, program. If one fails, stop, report the error briefly, and wait for my direction.</code></pre></li>
-<li><strong>Validate.</strong> <em>"Confirm the field exists end to end,
-the screen shows it after <MODELFIELD>, and list other impacted programs
-as follow-up. Do not modify anything."</em></li>
-</ol>
-<p><strong>Look for:</strong> the plan touches only the objects you
-named, column alignment in fixed-form specs, and other programs listed
-as follow-up instead of silently changed. <strong>Lab:</strong>
-Flight400 exercise 3, Lab 105 (part 2).</p>
-<h2 id="54-analyze-the-impact-of-a-change">5.4 Analyze the impact of a
-change</h2>
-<p><strong>Goal:</strong> know what breaks before widening a column or
-renaming a field. <strong>Setup:</strong> IBM i Developer, scope Library
-List (and local or IFS if the source is there).</p>
-<ol type="1">
-<li><pre><code>Find all objects that depend on &lt;TABLE&gt; in &lt;LIB&gt;. Return object name, object type and dependency type as a table.</code></pre></li>
-<li><pre><code>Map all relationships for &lt;TABLE&gt;: logical files, foreign keys, and joins found in source. For each, tell me whether the rule is in the database or only in code.</code></pre></li>
-<li><pre><code>Find every place the field &lt;COL&gt; is used in &lt;LIB&gt;: RPG programs, display files, SQL scripts, copybooks. Show member, line number and line of code. Which tables and views carry the field? What would break if its length changed from &lt;A&gt; to &lt;B&gt;?</code></pre></li>
-<li><pre><code>Simulate the recompile impact of widening &lt;COL&gt; from &lt;A&gt; to &lt;B&gt;: which objects must be recompiled, grouped by type, in what order, and which SQL statements replace a recompile?</code></pre></li>
-<li><pre><code>Generate a Markdown impact report from the previous steps and save it as docs/&lt;TABLE&gt;-&lt;COL&gt;-impact.md in my IFS home directory.</code></pre></li>
-</ol>
-<p><strong>Look for:</strong> zero foreign keys (integrity enforced by
-code only), several logicals over one file, and denormalized copies of
-the field that nothing links to the table. <strong>Lab:</strong> Lab 105
-(part 1).</p>
-<h2 id="55-move-from-dds-and-record-level-access-to-sql">5.5 Move from
-DDS and record-level access to SQL</h2>
-<p><strong>Goal:</strong> convert a DDS-described file to SQL DDL, and
-replace <code>CHAIN</code>/<code>READ</code> loops with embedded SQL.
-<strong>Setup:</strong> IBM i Developer for DDS, IBM i Database for the
-SQL side.</p>
-<ol type="1">
-<li><strong>Pre-migration report.</strong>
-<pre><code>&lt;PF&gt; in &lt;LIB&gt; is DDS described. Suggest the equivalent SQL DDL. First produce a pre-migration impact report: database relationships, static program references (DSPPGMREF), object statistics, journaling status, active locks and authority. Save it as Markdown in $HOME/docs on the IFS and create nothing in QSYS. Name the skills you used.</code></pre></li>
-<li><strong>Refine and validate.</strong>
-<pre><code>In the generated DDL, add DEFAULT &#39;0&#39; on &lt;COL&gt; and a CHECK constraint (&lt;COL&gt; IN (&#39;0&#39;,&#39;1&#39;)). Validate with check_sql_syntax. If it passes, create the table as &lt;LIB&gt;.&lt;TABLE&gt;NEW and ask me to confirm before executing.</code></pre></li>
-<li><strong>Check the result.</strong> <em>"Query QSYS2.SYSCOLUMNS for
-<TABLE>NEW in <LIB>: column, type, length, default."</em></li>
-<li><strong>Replace record-level access.</strong>
-<pre><code>Read program &lt;SRCF&gt;/&lt;PGM&gt; in &lt;LIB&gt;. Find where it CHAINs into &lt;FILE&gt; and then calls &lt;proc&gt;() to get a description. Replace these two operations with a single SQL SELECT with a LEFT JOIN. Show the new EXEC SQL block.</code></pre></li>
-<li><strong>Index strategy.</strong> <em>"For this LEFT JOIN on <T1> and
-<T2>, evaluate the index strategy using the db2-index-strategy
-skill."</em> Then <em>"Generate and validate the CREATE INDEX, then
-execute it in <LIB> with guardrail approval."</em></li>
-</ol>
-<p><strong>Look for:</strong> what is lost or changed in the conversion
-(keys, text, CCSID), and the approval prompts on DDL.
-<strong>Lab:</strong> Lab 103, Lab 104.</p>
-<h2 id="56-review-and-tune-sql">5.6 Review and tune SQL</h2>
-<p><strong>Goal:</strong> review an old query, find the bottleneck, and
-get justified index advice. <strong>Setup:</strong> IBM i Database,
-scope Library List.</p>
-<ol type="1">
-<li><strong>Review.</strong> Type <code>/review_sql</code> first so it
-is highlighted, then paste the query. Expect findings such as a column
-in <code>ORDER BY</code> that is not grouped, an unused join, misleading
-aliases, or numbers stored as text.</li>
-<li><strong>Ask why.</strong> <em>"Is any table a performance
-bottleneck, and why?"</em></li>
-<li><strong>Run the workflow.</strong> Click the workflow icon, choose
-<strong>Library List</strong>, then <strong>SQL Index Strategy
-Advisor</strong>. Typical settings: capture new performance data with
-<code>DUMP_PLAN_CACHE_TOPN</code>, output library
-<code>&lt;LIB&gt;</code>, top 20 queries by runtime.</li>
-<li><strong>Apply one index, in your schema only.</strong> <em>"Apply
-the highest-priority index only for <LIB>."</em> Approve the DDL, then
-measure again.</li>
-</ol>
-<p><strong>Look for:</strong> a recommendation Bob can justify with plan
-cache or Index Advisor data. <strong>Lab:</strong> Flight400 exercise 4,
-Lab 104.</p>
-<h2 id="57-test-with-rpgunit">5.7 Test with RPGUnit</h2>
-<p><strong>Goal:</strong> go from untested legacy RPG to an executed
-RPGUnit suite. <strong>Setup:</strong> IBM i Developer. Install the
-<strong>IBM i Testing</strong> extension, install
-<strong>RPGUnit</strong> from the connection's <em>Components</em> tab,
-and add <code>RPGUNIT</code> and <code>QDEVTOOLS</code> to the library
-list.</p>
-<p><strong>Option A, guided workflows.</strong> Run <strong>RPGUnit Test
-Plan Creation</strong>, then <strong>RPGUnit Test Suite
-Implementation</strong>. Give the library and an IFS project directory;
-Bob finds testable procedures, writes the plan, generates the suites,
-runs them and iterates until they pass.</p>
-<p><strong>Option B, prompt by prompt.</strong></p>
-<ol type="1">
-<li><pre><code>Read &lt;SRCF&gt;/&lt;MBR&gt; in &lt;LIB&gt;. Identify all exported procedures: name, parameters (type and usage), return type and purpose, as a table.</code></pre></li>
-<li><pre><code>Generate RPGUnit test stubs for &lt;proc1&gt;, &lt;proc2&gt; and &lt;proc3&gt; from &lt;LIB&gt;/&lt;SRCF&gt;(&lt;MBR&gt;). Use generate_rpg_unit_test_stub and show the recommended location and the stub.</code></pre></li>
-<li><pre><code>Fill in the assertions, one positive and one negative test per procedure, using the existing sample data in &lt;LIB&gt;.</code></pre></li>
-<li><pre><code>Run the test suite &lt;SUITE&gt; with *LINE code coverage. Show results, coverage percentage and failures with details.</code></pre></li>
-<li>If a test fails: <em>"Explain the failure and identify the correct
-expected value from the implementation."</em></li>
-</ol>
-<p><strong>Look for:</strong> edge cases a human would forget (nulls,
-empty values, maximum length, negative numbers). <strong>Lab:</strong>
-Flight400 exercise 6, Lab 106.</p>
-<h2 id="58-generate-a-modern-ui-from-a-green-screen">5.8 Generate a
-modern UI from a green screen</h2>
-<p><strong>Goal:</strong> turn a 5250 screen into a React and Carbon
-prototype running on IBM i. <strong>Setup:</strong> first create a
-helper skill, then IBM i Developer with the library list scope.</p>
-<ol type="1">
-<li><strong>Create a skill.</strong> In Agent mode with a local
-workspace task, paste a skill text (for example React and Vite on IBM i
-PASE) and say: <em>"Create a skill from the pasted text."</em></li>
-<li><strong>Generate.</strong> Switch to IBM i Developer, set the
-library list scope, attach a screenshot of the 5250 screen and ask:
-<pre><code>Given this screenshot of the 5250 screen from application &lt;APP&gt; in @&lt;LIB&gt;, build a single-page React 18 + Vite app on IBM i (PASE) with @carbon/react and the g100 theme that modernizes the screen. Create it in the IFS at $HOME/&lt;app&gt;-frontend/&lt;screen&gt;/. Run the dev server in the background with nohup, log to /tmp/vite-dev.log, and pin it to port &lt;PORT&gt;.</code></pre></li>
-<li><strong>Run it.</strong> <em>"Please start the dev server for the
-app you just created."</em> Open
-<code>http://localhost:&lt;PORT&gt;</code> (through an SSH tunnel if the
-system is remote).</li>
-<li><strong>Stop it</strong> when done: <em>"Stop the web service on
-port <PORT>."</em></li>
-</ol>
-<p><strong>Look for:</strong> the app uses sample data only. The natural
-next step is a REST layer over the real business logic and Db2 for i.
-<strong>Lab:</strong> Flight400 exercise 7.</p>
-<h2 id="59-operate-and-administer-your-system">5.9 Operate and
-administer your system</h2>
-<p><strong>Goal:</strong> use Bob as a knowledgeable assistant for
-operations: reports, troubleshooting and automation, without a green
-screen. <strong>Setup:</strong> <strong>IBM i Database</strong> for SQL
-services, security and performance; <strong>IBM i Developer</strong> for
-CL, PASE and IFS work. Use a <strong>test LPAR</strong> first, and ask
-for read-only answers before any change.</p>
-<h3 id="591-ptf-and-security-reports">5.9.1 PTF and security
-reports</h3>
-<ol type="1">
-<li><pre><code>Generate a PTF status report for this IBM i: missing PTFs, descriptions, and whether they require an IPL. Show the current group PTF levels for Db2 and Java.</code></pre></li>
-<li><pre><code>Run a security audit: profiles with default or expired passwords, inactive for 90+ days, profiles with *ALLOBJ that are not IBM-supplied, and objects in production libraries accessible to *PUBLIC.</code></pre></li>
-<li><pre><code>Write a concise Markdown summary of the PTF and security findings and save it in my IFS home directory.</code></pre></li>
-</ol>
-<h3 id="592-troubleshoot-a-hot-job">5.9.2 Troubleshoot a hot job</h3>
-<ol type="1">
-<li><pre><code>Show me the top 10 jobs consuming the most CPU. Distinguish cumulative CPU time from the current elapsed CPU percentage.</code></pre></li>
-<li><pre><code>What is going on with job &lt;JOB&gt;? Investigate its job log and runtime context and give me ranked recommendations. Separate facts from inferences. No more than two recommendations.</code></pre></li>
-<li><em>"Is a performance data collection running on this
-system?"</em></li>
-</ol>
-<h3 id="593-database-troubleshooting">5.9.3 Database
-troubleshooting</h3>
-<ol type="1">
-<li><em>"Which SQL statements consumed the most CPU over the last 10
-minutes?"</em></li>
-<li><em>"This query does a full scan with an ORDER BY on an unindexed
-column. What do you recommend?"</em> Bob uses the optimization and index
-skills and the Index Advisor data.</li>
-<li><em>"Which programs in <code>&lt;LIB&gt;</code> have not been
-recompiled in the last 5 years?"</em> (a ready-made modernization
-backlog)</li>
-</ol>
-<h3 id="594-automate-with-ansible">5.9.4 Automate with Ansible</h3>
-<p>Add the custom mode <code>ansible-for-i</code> (see the lab), switch
-to it, and ask:</p>
-<pre><code>Create an Ansible project for IBM i PTF management: an inventory for development, a playbook check_ptf_currency.yml that queries PTF_INFO and checks PTF group levels with the ibm.power_ibmi collection, computes compliance statistics, and writes an HTML report from a Jinja2 template. Check the actual columns of the tables before using them.</code></pre>
-<p>Then ask how to schedule it nightly and distribute the report.</p>
-<h3 id="595-power-infrastructure-hmc">5.9.5 Power infrastructure
-(HMC)</h3>
-<p>Bob can also query the HMC REST API (LPARs, VIOS, events, metrics,
-DLPAR). Follow the troubleshooting rule <strong>state, recent events,
-job status, resources, connectivity</strong>, and give a rich
-prompt:</p>
-<pre><code>LPAR &quot;&lt;name&gt;&quot; won&#39;t start on system &quot;&lt;sys&gt;&quot;. Last successful start: yesterday 14:00.
-Recent change: DLPAR memory 8 GB to 10 GB at 09:00. Event log: &quot;Profile validation failed&quot; at 10:15.
-Verified: free memory is available, VIOS is running.
-Please: 1) explain the failure, 2) say what the change may have broken, 3) propose a fix but do not apply it, 4) say how to prevent it.</code></pre>
-<p><strong>Admin tips:</strong> read-only first; a test LPAR or test
-HMC; give names, UUIDs, exact error text and a timeline; teach Bob your
-environment with custom modes and skills (your runbooks); give Bob a
-user profile with only the authority you want it to have.
-<strong>Lab:</strong> Ops and SysAdmin lab (Lab 200), Lab 201 (HMC), Lab
-5 (Ansible).</p>
-<hr />
-<h1 id="chapter-6-where-to-go-next">Chapter 6. Where to go next</h1>
-<div class="table-wrap"><table>
-<thead>
-<tr>
-<th>Resource</th>
-<th>Link</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Developer labs: Flight400</td>
-<td><a
-href="https://github.com/bmarolleau/flight400-demo">github.com/bmarolleau/flight400-demo</a></td>
-</tr>
-<tr>
-<td>Ops and SysAdmin lab</td>
-<td><a
-href="https://github.com/bmarolleau/IBM-i-Application-Modernization-with-Bob/blob/main/lab200-premium-package-ops-sysadmin.md">lab200-premium-package-ops-sysadmin.md</a></td>
-</tr>
-<tr>
-<td>Multi-language labs (Lab 101 to 106), HMC (Lab 201), Ansible (Lab
-5)</td>
-<td><a
-href="https://github.com/bmarolleau/IBM-i-Application-Modernization-with-Bob">IBM-i-Application-Modernization-with-Bob</a></td>
-</tr>
-<tr>
-<td>IBM i 101: guide and tutorials</td>
-<td><a
-href="https://github.com/bmarolleau/ibmi-101/blob/main/IBMi-Complete-Developer-Guide-EN.md">Complete
-Developer Guide</a>, <a
-href="https://github.com/bmarolleau/ibmi-101/tree/main/tutorials">tutorials</a></td>
-</tr>
-<tr>
-<td>Code for IBM i</td>
-<td><a
-href="https://codefori.github.io/docs/">codefori.github.io/docs</a></td>
-</tr>
-<tr>
-<td>Bob Premium Package for i reference</td>
-<td><a
-href="https://bob.ibm.com/docs/ide/premium-packages/bob-for-i/bob-for-i-index">bob.ibm.com/docs</a></td>
-</tr>
-</tbody>
-</table></div>
-<p><em>We are all in the same boat: experiment, and have fun.</em></p>
 <footer class="page-footer">Made with IBM Bob</footer>
 </main>
 </div>

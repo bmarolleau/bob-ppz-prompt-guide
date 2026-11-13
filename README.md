@@ -1,20 +1,21 @@
-# Getting Started with IBM Bob and the Premium Package for i
+# IBM Bob Premium Package for Z 3.x: Features, Modes, Workflows, Skills and Labs
 
-A short, hands-on guide for new IBM Bob users on IBM i: developers, green-screen
-programmers and administrators. Not a lab: a list of ideas to try, with a method
-and example prompts for each.
+A bilingual (English default, French on a discreet `FR` / `EN` switch in the page header)
+reference page for IBM Bob Premium Package for Z (COBOL, PL/I, JCL, HLASM): features,
+modes, workflows, slash commands, skills, latest releases and the CBSA labs matrix.
 
-- **Read it online:** https://bmarolleau.github.io/bob-ppi-prompt-guide/
-- **Source:** [`src/bob-ppi-prompt-guide.md`](src/bob-ppi-prompt-guide.md)
+- **Read it online:** https://bmarolleau.github.io/bob-ppz-prompt-guide/ (French: `/fr/`)
+- **Sources:** [`src/GLOBAL-docu-ibm-bob-for-z-3x-features-and-labs.md`](src/GLOBAL-docu-ibm-bob-for-z-3x-features-and-labs.md) (EN) and [`src/GLOBAL-docu-ibm-bob-for-z-3x-features-and-labs-FR.md`](src/GLOBAL-docu-ibm-bob-for-z-3x-features-and-labs-FR.md) (FR)
 
 ## Layout
 
 | Path | Purpose |
 |---|---|
-| `src/bob-ppi-prompt-guide.md` | The guide (edit this) |
-| `src/redbook-template.html` | Pandoc template (Redbook-style look) |
-| `src/build.py` | Refreshes the Markdown table of contents and generates `content/index.html` |
-| `content/index.html` | Generated page, published as the site home |
+| `src/GLOBAL-docu-ibm-bob-for-z-3x-features-and-labs.md` | English guide (edit this) |
+| `src/GLOBAL-docu-ibm-bob-for-z-3x-features-and-labs-FR.md` | French guide (edit this) |
+| `src/redbook-template.html` | Pandoc template (Redbook-style look, language switch) |
+| `src/build.py` | Generates `content/index.html` (EN) and `content/fr/index.html` (FR) |
+| `content/` | Generated pages, published as the site |
 | `mkdocs.yml`, `requirements.txt` | MkDocs project used to publish to GitHub Pages |
 
 ## Edit and rebuild
