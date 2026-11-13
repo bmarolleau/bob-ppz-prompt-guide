@@ -180,6 +180,8 @@ Commands</a></li>
 <li><a href="#24-skills" id="toc-24-skills">2.4 Skills</a></li>
 <li><a href="#25-tool-groups" id="toc-25-tool-groups">2.5 Tool
 Groups</a></li>
+<li><a href="#26-bob-rules-and-agentsmd"
+id="toc-26-bob-rules-and-agentsmd">2.6 Bob Rules and AGENTS.md</a></li>
 </ul></li>
 <li><a href="#3-latest-features-last-4-weeks"
 id="toc-3-latest-features-last-4-weeks">3. Latest Features (Last 4
@@ -254,6 +256,12 @@ COBOL/PL/I to Java planning and validation</td>
 <td>Governance</td>
 <td>Coding standards skills, ZCodeScan, impact analysis, data
 dictionary</td>
+</tr>
+<tr>
+<td>Customization</td>
+<td>Bob rules (<code>.bob/rules/</code>, <code>AGENTS.md</code>) to
+enforce naming, organization and documentation conventions; custom modes
+and skills</td>
 </tr>
 <tr>
 <td>Deployment options</td>
@@ -524,6 +532,99 @@ skills</a></p>
 <p>Reference: <a
 href="https://bob.ibm.com/docs/ide/premium-packages/bob-for-z/Using_tools">Using
 tools and tool groups</a></p>
+<h3 id="26-bob-rules-and-agentsmd">2.6 Bob Rules and AGENTS.md</h3>
+<p>Rules are standing instructions that Bob applies to every task,
+without repeating them in each prompt. They extend Bob's default
+behavior with preferences, constraints and guidelines: coding style,
+documentation formats, testing requirements, project workflows and team
+conventions.</p>
+<p><strong>Where rules live</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Location</th>
+<th>Scope</th>
+<th>Applies to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>~/.bob/rules/</code></td>
+<td>Global: all your projects</td>
+<td>All modes</td>
+</tr>
+<tr>
+<td><code>.bob/rules/</code></td>
+<td>Workspace: current project only</td>
+<td>All modes</td>
+</tr>
+<tr>
+<td><code>.bob/rules-{mode-slug}/</code></td>
+<td>Workspace: current project only</td>
+<td>One mode (use the slug of the mode, for example
+<code>rules-plan/</code> for Plan mode)</td>
+</tr>
+<tr>
+<td><code>AGENTS.md</code> (project root)</td>
+<td>Workspace: current project only</td>
+<td>All modes; loaded automatically and versioned with the project</td>
+</tr>
+</tbody>
+</table></div>
+<pre class="text"><code>.bob/
+├── rules/
+│   └── 01-naming-and-organization.md     # general rules, all modes
+└── rules-{mode-slug}/
+    ├── 01-style-guide.md                 # rules for one mode only
+    └── 02-formatting.txt</code></pre>
+<p><strong>How rules are combined</strong></p>
+<ul>
+<li>Global rules (<code>~/.bob/rules/</code>) load first, then workspace
+rules (<code>.bob/rules/</code>). Workspace rules can override global
+rules.</li>
+<li>Within each level, mode-specific rules load before general
+rules.</li>
+<li>Files in a rules directory are loaded alphabetically; numeric
+prefixes (<code>01-</code>, <code>02-</code>) control the order.</li>
+<li><code>/init</code> analyzes the codebase and generates
+<code>AGENTS.md</code>, which gives Bob the project context from the
+first task.</li>
+</ul>
+<p><strong>Writing effective rules</strong></p>
+<ul>
+<li>Organize by topic, with one short bullet per rule and a concrete
+example of the expected result.</li>
+<li>Keep rules and <code>AGENTS.md</code> short. They are part of the
+standing context and consume tokens before you type anything: put only
+conventions, setup, test and style commands there.</li>
+<li>Use global rules for personal or organization-wide standards, and
+workspace rules for project requirements.</li>
+</ul>
+<p><strong>Rules in the labs</strong></p>
+<p><a
+href="https://github.com/ovallod/Bob4z-a-thon/blob/main/EN/1-LabDiscoverCBSA_EN.md">Lab
+1, Exercise 0</a> creates the first rules of the CBSA project, before
+any analysis. One prompt (abridged below) defines where Bob stores what
+it generates and how it names it:</p>
+<pre class="text"><code>Create the following Bob rules (file in .bob/rules):
+- Documents must be stored in the docs/ directory. Documents specific to a program go in a
+  sub-directory named after the program (for example docs/BNKMENU/).
+- Tools must be stored in the tools/ directory.
+- Schemas, drawings and graphs must be stored in graph/ directory.
+- File names follow [PREFIX]-[TYPE]-[description].md, where PREFIX is the program name,
+  CBSA (application) or GLOBAL (cross-cutting), and TYPE is analysis, archi, docu, inv, plan or spec.</code></pre>
+<p>Bob writes the rules to <code>.bob/rules/</code> or to a dedicated
+section of <code>AGENTS.md</code>; both are applied the same way. The
+following exercises then generate documents in the locations and with
+the names defined by these rules (for example
+<code>GLOBAL-docu-...</code> for cross-cutting documents).</p>
+<p>References: <a
+href="https://bob.ibm.com/docs/ide/configuration/rules">Custom rules</a>
+· <a
+href="https://bob.ibm.com/docs/ide/tutorials/standardize-bobs-behavior">Standardize
+Bob's behavior</a> · <a
+href="https://bob.ibm.com/docs/shell/configuration/bobshell-custom-rules">Custom
+rules in Bob Shell</a></p>
 <hr />
 <h2 id="3-latest-features-last-4-weeks">3. Latest Features (Last 4
 Weeks)</h2>
@@ -658,17 +759,18 @@ folder</a>.</p>
 <tr>
 <td><strong>1. Discover CBSA</strong> (<a
 href="https://github.com/ovallod/Bob4z-a-thon/blob/main/EN/1-LabDiscoverCBSA_EN.md">source</a>)</td>
-<td>Modes: Z Code, Z Architect, Agent. <code>/init</code> with
-<code>scan_program</code>; Generate data dictionary workflow;
+<td>Modes: Z Code, Z Architect, Agent. Bob rules
+(<code>.bob/rules</code>, <code>AGENTS.md</code>); <code>/init</code>
+with <code>scan_program</code>; Generate data dictionary workflow;
 <code>execute_sql_query</code>;
 <code>/z-coding-standards-skill-builder</code>; <code>/explain</code>;
 Generate documentation workflow (business rules); draw.io diagrams;
 impact analysis and implementation planning</td>
-<td>Define naming and organization rules; initialize the workspace;
-build a data dictionary, application inventory and coding standards;
-produce architecture diagrams; document programs and business rules; run
-an impact analysis (fixed to variable SORTCODE); document the user
-journey; plan and implement a new feature (search by email)</td>
+<td>Define Bob rules for naming and organization; initialize the
+workspace; build a data dictionary, application inventory and coding
+standards; produce architecture diagrams; document programs and business
+rules; run an impact analysis (fixed to variable SORTCODE); document the
+user journey; plan and implement a new feature (search by email)</td>
 </tr>
 <tr>
 <td><strong>2. Discover CBSA Global</strong> (<a
@@ -719,6 +821,13 @@ Coverage by Lab</h3>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>Bob rules (<code>.bob/rules</code>)</td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
 <tr>
 <td><code>/init</code> and <code>AGENTS.md</code></td>
 <td style="text-align: center;">✓</td>
